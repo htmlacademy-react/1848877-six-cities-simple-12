@@ -1,4 +1,4 @@
-import Card from '../../components/card_component/card-component';
+import Card from '../../components/card-component/card-component';
 
 type MainPlacesCountProp = {
   placesCount: number;

@@ -1,4 +1,4 @@
-import MainPage from '../../pages/main_page/main-page';
+import MainPage from '../../pages/main-page/main-page';
 
 type AppPlacesCountProps = {
   placesCount: number;
