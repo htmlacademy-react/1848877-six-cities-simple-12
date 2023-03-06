@@ -4,9 +4,8 @@ type AppPlacesCountProps = {
   placesCount: number;
 }
 
-function App ({ placesCount }: AppPlacesCountProps) {
-  return ( <MainPage placesCount={placesCount} /> );
-
-}
+const App = ({ placesCount }: AppPlacesCountProps) => (
+  <MainPage placesCount={placesCount} />
+);
 
 export default App;
