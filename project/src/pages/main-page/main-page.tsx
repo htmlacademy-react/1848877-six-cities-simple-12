@@ -1,4 +1,4 @@
-import Card from '../../components/card-component/card-component';
+import CardComponent from '../../components/card-component/card-component';
 
 type MainPlacesCountProp = {
   placesCount: number;
@@ -65,11 +65,11 @@ export default function MainPage({ placesCount }: MainPlacesCountProp): JSX.Elem
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              <Card />
-              <Card />
-              <Card />
-              <Card />
-              <Card />
+              <CardComponent />
+              <CardComponent />
+              <CardComponent />
+              <CardComponent />
+              <CardComponent />
             </div>
           </section>
           <div className="cities__right-section">
