@@ -1,7 +1,7 @@
-import Map from '../../components/map/index';
-import NearPlaces from '../../components/near-places/index';
+import Map from '../../components/map';
+import NearPlaces from '../../components/near-places';
 
-const Offer = (): JSX.Element => (
+const Offer = () => (
   <main className="page__main page__main--property">
     <section className="property">
       <div className="property__gallery-container container">

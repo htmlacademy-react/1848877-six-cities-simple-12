@@ -1,4 +1,4 @@
-const Login = (): JSX.Element => (
+const Login = () => (
   <main className="page__main page__main--login">
     <div className="page__login-container container">
       <section className="login">

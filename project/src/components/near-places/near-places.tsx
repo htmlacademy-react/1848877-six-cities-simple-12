@@ -1,4 +1,4 @@
-const NearPlaces = (): JSX.Element => (
+const NearPlaces = () => (
   <article className="near-places__card place-card">
     <div className="near-places__image-wrapper place-card__image-wrapper">
       <a href="#">

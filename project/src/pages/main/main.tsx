@@ -1,10 +1,10 @@
-import Card from '../../components/card/index';
+import Card from '../../components/card';
 
 type MainProps = {
   placesCount: number;
 }
 
-const Main = ({ placesCount }: MainProps): JSX.Element => (
+const Main = ({ placesCount }: MainProps) => (
   <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
     <div className="tabs">
