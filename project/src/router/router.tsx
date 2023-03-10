@@ -1,9 +1,9 @@
-import Main from '../../../pages/main';
+import Main from '../pages/main';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Offer from '../../../pages/offer';
-import Login from '../../../pages/login';
-import { AppRoute } from './constants';
-import NotFound from '../../../pages/not-found';
+import Offer from '../pages/offer';
+import Login from '../pages/login';
+import { AppRoute } from './RoutePath';
+import NotFound from '../pages/not-found';
 
 type RouterProps = {
   placesCount: number;

@@ -1,4 +1,4 @@
-import Router from './route-path';
+import Router from '../../router';
 
 type AppProps = {
   placesCount: number;
