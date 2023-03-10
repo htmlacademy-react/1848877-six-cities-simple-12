@@ -1,11 +1,11 @@
-import MainPage from '../../pages/main-page/main-page';
+import Router from '../../router';
 
-type AppPlacesCountProps = {
+type AppProps = {
   placesCount: number;
 }
 
-const App = ({ placesCount }: AppPlacesCountProps) => (
-  <MainPage placesCount={placesCount} />
+const App = ({ placesCount }: AppProps) => (
+  < Router placesCount={placesCount} />
 );
 
 export default App;
