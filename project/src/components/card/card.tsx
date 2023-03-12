@@ -5,6 +5,8 @@ import { getRatingColor } from '../rating-star/utils';
 
 type CardProps = {
   offer: Offers;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
   cardType: 'home' | 'property';
 }
 
@@ -22,7 +24,7 @@ const cardClassnames = {
   },
 };
 
-const Card = ({ offer, cardType }: CardProps) => {
+const Card = ({ offer, onMouseEnter, onMouseLeave, cardType }: CardProps) => {
   const { price, previewImage, title, type, isPremium, id, rating } = offer;
   const { article, image, cardInfo } = cardClassnames[cardType];
   const typePlace = type.replace(type[0], type[0].toUpperCase());
@@ -32,8 +34,11 @@ const Card = ({ offer, cardType }: CardProps) => {
   });
 
   return (
-    <article className={article}>
-      <div className="place-card__mark">
+    <article className={article}
+      onMouseOver={() => onMouseEnter}
+      onMouseLeave={() => onMouseLeave}
+    >
+      <div className={isPremium ? 'place-card__mark' : ''}>
         <span>{isPremium ? 'Premium' : ''}</span>
       </div>
       <div className={image}>
@@ -60,7 +65,7 @@ const Card = ({ offer, cardType }: CardProps) => {
         </h2>
         <p className="place-card__type">{typePlace}</p>
       </div>
-    </article>
+    </article >
   );
 };
 
