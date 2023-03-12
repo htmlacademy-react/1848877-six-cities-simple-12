@@ -1,6 +1,7 @@
 import { AppRoute } from '../../router/RoutePath';
 import { Offers } from '../../types/offers';
 import { Link, generatePath } from 'react-router-dom';
+import { getRatingColor } from '../rating-star/utils';
 
 type CardProps = {
   offer: Offers;
@@ -22,7 +23,7 @@ const cardClassnames = {
 };
 
 const Card = ({ offer, cardType }: CardProps) => {
-  const { price, previewImage, title, type, isPremium, id } = offer;
+  const { price, previewImage, title, type, isPremium, id, rating } = offer;
   const { article, image, cardInfo } = cardClassnames[cardType];
   const typePlace = type.replace(type[0], type[0].toUpperCase());
 
@@ -50,7 +51,7 @@ const Card = ({ offer, cardType }: CardProps) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: '80%' }}></span>
+            <span style={{ width: `${getRatingColor(rating)}` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

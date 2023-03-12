@@ -7,9 +7,9 @@ import PropertyItem from '../property-item';
 import { useEffect, useState } from 'react';
 import { Offers } from '../../types/offers';
 import { offersMock } from '../../mocks/offers';
+import { getRatingColor } from '../../components/rating-star/utils';
 
-
-const Offer = ({ }) => {
+const Offer = () => {
   const { id } = useParams();
   const [room, setRoom] = useState<Offers>();
   useEffect(() => { setRoom(offersMock.find((offer) => offer.id === Number(id))); }, []);
@@ -38,7 +38,7 @@ const Offer = ({ }) => {
             </div>
             <div className="property__rating rating">
               <div className="property__stars rating__stars">
-                <span style={{ width: '80%' }}></span>
+                <span style={{ width: `${getRatingColor(room.rating)}%` }}></span>
                 <span className="visually-hidden">Rating</span>
               </div>
               <span className="property__rating-value rating__value">{room.rating}</span>
