@@ -15,7 +15,7 @@ const Offer = () => {
 
   useEffect(() => {
     setRoom(offersMock.find((offer) => offer.id === Number(id)));
-  }, []);
+  }, [id]);
 
   if (!room) {
     return <>Loading...</>;
