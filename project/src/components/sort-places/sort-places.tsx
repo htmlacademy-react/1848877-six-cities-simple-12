@@ -1,4 +1,4 @@
-const Sort = () => (
+const SortPlaces = () => (
   <form className="places__sorting" action="#" method="get">
     <span className="places__sorting-caption">Sort by</span>
     <span className="places__sorting-type" tabIndex={0}>
@@ -16,4 +16,4 @@ const Sort = () => (
   </form>
 );
 
-export default Sort;
+export default SortPlaces;

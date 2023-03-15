@@ -1,4 +1,4 @@
-import RatingStar from '../rating-star';
+import Rating from '../rating';
 import { REVIEW_STARS } from './const';
 import { useState } from 'react';
 
@@ -18,7 +18,7 @@ const ReviewForm = () => {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {REVIEW_STARS.map((star) => (
-          <RatingStar
+          <Rating
             key={star.value}
             value={star.value}
             title={star.title}

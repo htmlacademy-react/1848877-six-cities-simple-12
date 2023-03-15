@@ -1,18 +1,21 @@
 import { useParams } from 'react-router-dom';
 import Map from '../../components/map';
 import NearPlaces from '../../components/near-places';
-import PropertyImages from '../../components/property-images';
+import ImagesOfOffers from '../../components/images-of-offers';
 import ReviewForm from '../../components/review-form';
 import PropertyItem from '../property-item';
 import { useEffect, useState } from 'react';
 import { Offers } from '../../types/offers';
 import { offersMock } from '../../mocks/offers';
-import { getRatingColor } from '../../components/rating-star/utils';
+import { getRatingColor } from '../../utils/getRatingColor';
 
 const Offer = () => {
   const { id } = useParams();
   const [room, setRoom] = useState<Offers>();
-  useEffect(() => { setRoom(offersMock.find((offer) => offer.id === Number(id))); }, []);
+
+  useEffect(() => {
+    setRoom(offersMock.find((offer) => offer.id === Number(id)));
+  }, []);
 
   if (!room) {
     return <>Loading...</>;
@@ -23,7 +26,7 @@ const Offer = () => {
       <section className="property">
         <div className="property__gallery-container container">
           <div className="property__gallery">
-            {room.images.map((img) => (<PropertyImages key={img} img={img} />))}
+            {room.images.map((img) => (<ImagesOfOffers key={img} img={img} />))}
           </div>
         </div>
         <div className="property__container container">

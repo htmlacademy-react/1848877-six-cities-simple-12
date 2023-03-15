@@ -1,10 +1,16 @@
 import { AppRoute } from '../../router/RoutePath';
 import { Offers } from '../../types/offers';
 import { Link, generatePath } from 'react-router-dom';
-import { getRatingColor } from '../rating-star/utils';
+import { getRatingColor } from '../../utils/getRatingColor';
 
 type CardProps = {
-  offer: Offers;
+  price: Offers['price'];
+  previewImage: Offers['previewImage'];
+  title: Offers['title'];
+  type: Offers['type'];
+  isPremium: Offers['isPremium'];
+  id: Offers['id'];
+  rating: Offers['rating'];
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
   cardType: 'home' | 'property';
@@ -24,8 +30,7 @@ const cardClassnames = {
   },
 };
 
-const Card = ({ offer, onMouseEnter, onMouseLeave, cardType }: CardProps) => {
-  const { price, previewImage, title, type, isPremium, id, rating } = offer;
+const Card = ({ price, previewImage, title, type, isPremium, id, rating, onMouseEnter, onMouseLeave, cardType }: CardProps) => {
   const { article, image, cardInfo } = cardClassnames[cardType];
   const typePlace = type.replace(type[0], type[0].toUpperCase());
 

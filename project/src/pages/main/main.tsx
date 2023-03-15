@@ -1,7 +1,7 @@
 import { Offers } from '../../types/offers';
 import { Link } from 'react-router-dom';
-import ListCards from '../../components/list-cards';
-import Sort from '../../components/sort';
+import CardList from '../../components/card-list';
+import SortPlaces from '../../components/sort-places';
 
 type MainProps = {
   placesCount: number;
@@ -53,9 +53,9 @@ function Main({ placesCount, offers }: MainProps) {
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">{placesCount} places to stay in Amsterdam</b>
-            < Sort />
+            < SortPlaces />
             <div className="cities__places-list places__list tabs__content">
-              <ListCards offers={offers} />
+              <CardList offers={offers} />
             </div>
           </section>
           <div className="cities__right-section">
