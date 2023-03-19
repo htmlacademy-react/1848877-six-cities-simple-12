@@ -1,6 +1,6 @@
 import Rating from '../rating';
 import { REVIEW_STARS } from './const';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 const ReviewForm = () => {
   const [data, setData] = useState({
@@ -9,7 +9,7 @@ const ReviewForm = () => {
   });
 
   const changeDataHandle = (
-    evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setData({ ...data, [evt.target.name]: evt.target.value });
   };

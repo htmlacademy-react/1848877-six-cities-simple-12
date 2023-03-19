@@ -1,4 +1,4 @@
-import { Offers } from '../types/offers';
+import { City, Offers } from '../types/offers';
 
 export const offersMock: Offers[] =
 [
@@ -143,3 +143,12 @@ export const offersMock: Offers[] =
     type: 'apartment',
   },
 ];
+
+export const CityLocation: City = {
+  location: {
+    latitude: 52.370216,
+    longitude: 4.895168,
+    zoom: 10,
+  },
+  name: 'Amsterdam',
+};
