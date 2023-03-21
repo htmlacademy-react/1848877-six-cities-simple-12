@@ -1,5 +1,6 @@
 import { Review } from '../../types/review';
 import { getRatingColor } from '../../utils/getRatingColor';
+import { humanizeDate } from '../../utils/humanizeDate';
 
 type ReviewItemProps = {
   comment: Review['comment'];
@@ -30,7 +31,7 @@ const ReviewItem = ({ comment, date, rating, user }: ReviewItemProps) => {
         <p className="reviews__text">
           {comment}
         </p>
-        <time className="reviews__time" dateTime="2019-04-24">{date}</time>
+        <time className="reviews__time" dateTime={humanizeDate(date, 'YYYY-MM-DD')}>{humanizeDate(date, 'MMMM YYYY')}</time>
       </div>
     </li>
   );
