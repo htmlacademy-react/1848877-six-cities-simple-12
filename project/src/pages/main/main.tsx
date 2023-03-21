@@ -27,7 +27,7 @@ const Main = ({ placesCount, offers }: MainProps) => {
             <b className="places__found">{placesCount} places to stay in Amsterdam</b>
             < SortPlaces />
             <div className="cities__places-list places__list tabs__content">
-              <CardList offers={offers} onListItemHover={setSelectedOfferId} />
+              <CardList offers={offers} onListItemHover={setSelectedOfferId} cardType={'home'} />
             </div>
           </section>
           <div className="cities__right-section">

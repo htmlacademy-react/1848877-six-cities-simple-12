@@ -2,7 +2,7 @@ import 'leaflet/dist/leaflet.css';
 import cn from 'classnames';
 import { Icon, Marker } from 'leaflet';
 import { Offers, City } from '../../types/offers';
-import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const/const';
+import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../constants/constants';
 import useMap from '../use-map';
 import { useEffect, useRef } from 'react';
 
@@ -10,7 +10,7 @@ type MapProps = {
   className: string;
   city: City;
   offers: Offers[];
-  selectedOfferId: number | null;
+  selectedOfferId?: number | null;
 };
 
 const defaultCustomIcon = new Icon({

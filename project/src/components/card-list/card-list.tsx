@@ -4,9 +4,10 @@ import { Offers } from '../../types/offers';
 type ListCardProps = {
   offers: Offers[];
   onListItemHover?: (listItemName: number | null) => void;
+  cardType: 'home' | 'property';
 };
 
-const CardList = ({ offers, onListItemHover }: ListCardProps) => (
+const CardList = ({ offers, onListItemHover, cardType }: ListCardProps) => (
   <>
     {offers.map(({ price, previewImage, title, type, isPremium, id, rating }) => (
       <Card
@@ -20,7 +21,7 @@ const CardList = ({ offers, onListItemHover }: ListCardProps) => (
         rating={rating}
         onMouseEnter={() => onListItemHover?.(id)}
         onMouseLeave={() => onListItemHover?.(null)}
-        cardType="home"
+        cardType={cardType}
       />
     ))}
   </>
