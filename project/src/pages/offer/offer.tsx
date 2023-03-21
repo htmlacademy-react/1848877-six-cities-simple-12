@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import Map from '../../components/map';
 import NearPlaces from '../../components/near-places';
 import ImagesOfOffers from '../../components/images-of-offers';
 import ReviewForm from '../../components/review-form';
@@ -8,6 +7,8 @@ import { useEffect, useState } from 'react';
 import { Offers } from '../../types/offers';
 import { offersMock } from '../../mocks/offers';
 import { getRatingColor } from '../../utils/getRatingColor';
+//import { COUNT_NEAR_OFFER } from '../../const/const';
+//import Card from '../../components/card';
 
 const Offer = () => {
   const { id } = useParams();
@@ -121,7 +122,7 @@ const Offer = () => {
             </section>
           </div>
         </div>
-        <Map />
+        {/*<Map />*/}
       </section>
       <div className="container">
         <section className="near-places places">
@@ -130,6 +131,18 @@ const Offer = () => {
             <NearPlaces />
             <NearPlaces />
             <NearPlaces />
+            {/*{offersMock.slice(0, COUNT_NEAR_OFFER).map((offer) => (
+							<Card
+								key={offer.id}
+								price={offer.price}
+								previewImage={offer.previewImage}
+								title={offer.title}
+								type={offer.type}
+								isPremium={offer.isPremium}
+								id={offer.id}
+								rating={offer.rating}
+								cardType="property" />
+						))}*/}
           </div>
         </section>
       </div>
