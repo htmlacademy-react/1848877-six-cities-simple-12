@@ -20,7 +20,6 @@ const CardList = ({ offers, onListItemHover, cardType }: ListCardProps) => (
         id={id}
         rating={rating}
         onMouseEnter={() => onListItemHover?.(id)}
-        onMouseLeave={() => onListItemHover?.(null)}
         cardType={cardType}
       />
     ))}
