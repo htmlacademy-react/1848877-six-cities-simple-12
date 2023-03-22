@@ -1,14 +1,16 @@
 import { useParams } from 'react-router-dom';
-import NearPlaces from '../../components/near-places';
 import ImagesOfOffers from '../../components/images-of-offers';
 import ReviewForm from '../../components/review-form';
 import PropertyItem from '../property-item';
 import { useEffect, useState } from 'react';
 import { Offers } from '../../types/offers';
-import { offersMock } from '../../mocks/offers';
+import { CityLocation, offersMock } from '../../mocks/offers';
 import { getRatingColor } from '../../utils/getRatingColor';
-//import { COUNT_NEAR_OFFER } from '../../const/const';
-//import Card from '../../components/card';
+import { COUNT_NEAR_OFFER } from '../../constants/constants';
+import ReviewList from '../../components/review-list';
+import { reviews } from '../../mocks/reviews';
+import CardList from '../../components/card-list';
+import Map from '../../components/map';
 
 const Offer = () => {
   const { id } = useParams();
@@ -93,56 +95,26 @@ const Offer = () => {
               </div>
             </div>
             <section className="property__reviews reviews">
-              <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
-              <ul className="reviews__list">
-                <li className="reviews__item">
-                  <div className="reviews__user user">
-                    <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                      <img className="reviews__avatar user__avatar" src="img/avatar-max.jpg" width="54" height="54" alt="Reviews avatar" />
-                    </div>
-                    <span className="reviews__user-name">
-                      Max
-                    </span>
-                  </div>
-                  <div className="reviews__info">
-                    <div className="reviews__rating rating">
-                      <div className="reviews__stars rating__stars">
-                        <span style={{ width: '80%' }}></span>
-                        <span className="visually-hidden">Rating</span>
-                      </div>
-                    </div>
-                    <p className="reviews__text">
-                      A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                    </p>
-                    <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
-                  </div>
-                </li>
-              </ul>
+              <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
+              <ReviewList />
               <ReviewForm />
             </section>
           </div>
         </div>
-        {/*<Map />*/}
+        <Map
+          className="property__map"
+          city={CityLocation}
+          offers={offersMock.slice(0, COUNT_NEAR_OFFER)}
+        />
       </section>
       <div className="container">
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <div className="near-places__list places__list">
-            <NearPlaces />
-            <NearPlaces />
-            <NearPlaces />
-            {/*{offersMock.slice(0, COUNT_NEAR_OFFER).map((offer) => (
-							<Card
-								key={offer.id}
-								price={offer.price}
-								previewImage={offer.previewImage}
-								title={offer.title}
-								type={offer.type}
-								isPremium={offer.isPremium}
-								id={offer.id}
-								rating={offer.rating}
-								cardType="property" />
-						))}*/}
+            <CardList
+              offers={offersMock.slice(0, COUNT_NEAR_OFFER)}
+              cardType="property"
+            />
           </div>
         </section>
       </div>
