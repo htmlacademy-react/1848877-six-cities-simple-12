@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { CITIES } from '../../constants/constants';
+import { CITIES } from './constants';
 
 type CitiesProps = {
   currentCity: string;

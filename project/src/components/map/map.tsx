@@ -1,10 +1,10 @@
 import 'leaflet/dist/leaflet.css';
-import cn from 'classnames';
+import classnames from 'classnames';
 import { Icon, Marker } from 'leaflet';
 import { Offers, City } from '../../types/offers';
-import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../constants/constants';
-import useMap from '../use-map';
+import useMap from '../../hooks/use-map';
 import { useEffect, useRef } from 'react';
+import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from './constants';
 
 type MapProps = {
   className: string;
@@ -51,7 +51,7 @@ const Map = ({ className, city, offers, selectedOfferId }: MapProps) => {
 
   return (
     <section
-      className={cn('map', className)}
+      className={classnames('map', className)}
       style={{ height: '562px' }}
       ref={mapRef}
     >
