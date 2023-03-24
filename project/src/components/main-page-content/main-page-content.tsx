@@ -6,14 +6,15 @@ import Map from '../map';
 type MainPageContent = {
   placesCount: number;
   offers: Offers[];
+  currentCity: string;
 };
 
-const MainPageContent = ({ placesCount, offers }: MainPageContent) => (
+const MainPageContent = ({ placesCount, currentCity, offers }: MainPageContent) => (
   <div className="cities">
     <div className="cities__places-container container">
       <section className="cities__places places">
         <h2 className="visually-hidden">Places</h2>
-        <b className="places__found">{placesCount} places to stay in Amsterdam</b>
+        <b className="places__found">{placesCount} places to stay in {currentCity}</b>
         < SortPlaces />
         <div className="cities__places-list places__list tabs__content">
           <CardList offers={offers} cardType={'home'} />
