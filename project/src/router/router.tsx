@@ -4,17 +4,11 @@ import Offer from '../pages/offer';
 import Login from '../pages/login';
 import { AppRoute } from './RoutePath';
 import NotFound from '../pages/not-found';
-import { Offers } from '../types/offers';
 
-type RouterProps = {
-  placesCount: number;
-  offers: Offers[];
-}
-
-const Router = ({ placesCount, offers }: RouterProps) => (
+const Router = () => (
   <BrowserRouter>
     <Routes>
-      <Route path={AppRoute.Root} element={<Main placesCount={placesCount} offers={offers} />} />
+      <Route path={AppRoute.Root} element={<Main />} />
       <Route path={AppRoute.Offer} element={<Offer />} />
       <Route path={AppRoute.Login} element={<Login />} />
       <Route path="*" element={<NotFound />} />

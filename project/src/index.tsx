@@ -1,21 +1,18 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/index';
-import { offersMock } from './mocks/offers';
-
-const Setting = {
-  PlacesCount: 312,
-} as const;
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
 root.render(
-  <React.StrictMode>
-    <App
-      placesCount={Setting.PlacesCount}
-      offers={offersMock}
-    />
-  </React.StrictMode>,
+  <StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider >
+  </StrictMode>
+
 );
