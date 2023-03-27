@@ -12,6 +12,7 @@ type CardProps = {
   id: Offers['id'];
   rating: Offers['rating'];
   onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
   cardType: 'home' | 'property';
 }
 
@@ -29,7 +30,9 @@ const cardClassnames = {
   },
 };
 
-const Card = ({ price, previewImage, title, type, isPremium, id, rating, onMouseEnter, cardType }: CardProps) => {
+const Card = ({
+  price, previewImage, title, type, isPremium, id, rating, onMouseEnter, cardType, onMouseLeave
+}: CardProps) => {
   const { article, image, cardInfo } = cardClassnames[cardType];
   const typePlace = type.replace(type[0], type[0].toUpperCase());
 
@@ -38,8 +41,10 @@ const Card = ({ price, previewImage, title, type, isPremium, id, rating, onMouse
   });
 
   return (
-    <article className={article}
-      onMouseOver={() => onMouseEnter}
+    <article
+      className={article}
+      onMouseOver={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       <div className={isPremium ? 'place-card__mark' : ''}>
         <span>{isPremium ? 'Premium' : ''}</span>
