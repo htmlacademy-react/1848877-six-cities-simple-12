@@ -10,4 +10,5 @@ export enum SortingTypes {
   PriceLowToHigh = 'PRICE_LOW_TO_HIGH',
   PriceHighToLow = 'PRICE_HIGH_TO_LOW',
   TopRatedFirst = 'TOP_RATED_FIRST',
+  Popular = 'POPULAR',
 }

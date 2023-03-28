@@ -14,7 +14,7 @@ type InitialState = {
 const initialState: InitialState = {
   offers: offersMock,
   city: CITIES[0],
-  sortName: SortingTypes.TopRatedFirst,
+  sortName: SortingTypes.Popular,
 };
 
 const reducer = createReducer(initialState, (builder) => {

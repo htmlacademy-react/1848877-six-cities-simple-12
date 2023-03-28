@@ -5,6 +5,10 @@ import { changeSort } from '../../store/action';
 
 const list = [
   {
+    title: 'Popular',
+    value: SortingTypes.Popular,
+  },
+  {
     title: 'Price: low to high',
     value: SortingTypes.PriceLowToHigh,
   },
