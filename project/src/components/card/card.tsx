@@ -30,11 +30,15 @@ const cardClassnames = {
   },
 };
 
+const getTypePlace = (type: string) => {
+  type.replace(type[0], type[0].toUpperCase());
+};
+
 const Card = ({
   price, previewImage, title, type, isPremium, id, rating, onMouseEnter, cardType, onMouseLeave
 }: CardProps) => {
   const { article, image, cardInfo } = cardClassnames[cardType];
-  const typePlace = type.replace(type[0], type[0].toUpperCase());
+  const typePlace = getTypePlace(type);
 
   const link = generatePath(AppRoute.Offer, {
     id: `${id}`,

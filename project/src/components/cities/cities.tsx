@@ -7,12 +7,11 @@ type CitiesProps = {
 };
 
 const Cities = ({ currentCity, onChangeCity }: CitiesProps) => {
-  const handleChangeCity = (
-    evt: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
-    city: string) => {
+  const handleChangeCity = (evt: React.MouseEvent<HTMLAnchorElement, MouseEvent>, city: string) => {
     evt.preventDefault();
     onChangeCity(city);
   };
+
   return (
     <div className="tabs">
       <section className="locations container">
