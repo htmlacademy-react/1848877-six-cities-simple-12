@@ -3,7 +3,8 @@ import CardList from '../card-list';
 import SortPlaces from '../sort-places';
 import Map from '../map';
 import { SortingTypes } from '../../constants/constants';
-import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { offerIdChange } from '../../store/action';
 
 type MainPageContent = {
   placesCount: number;
@@ -13,12 +14,15 @@ type MainPageContent = {
 };
 
 const MainPageContent = ({ placesCount, currentCity, offers, currentSortName }: MainPageContent) => {
-  const [selectedOfferId, setSelectedOfferId] = useState<number | null>(
-    null
-  );
+  const dispatch = useAppDispatch();
+  const offersId = useAppSelector((state) => state.id);
+
+  const onListItemHover = (id: number) => {
+    dispatch(offerIdChange(id));
+  };
 
   const onMouseLeave = () => {
-    setSelectedOfferId(null);
+    dispatch(offerIdChange(null));
   };
 
   return (
@@ -32,7 +36,7 @@ const MainPageContent = ({ placesCount, currentCity, offers, currentSortName }: 
             <CardList
               offers={offers}
               cardType={'home'}
-              onListItemHover={setSelectedOfferId}
+              onListItemHover={onListItemHover}
               onMouseLeave={onMouseLeave}
             />
           </div>
@@ -42,7 +46,7 @@ const MainPageContent = ({ placesCount, currentCity, offers, currentSortName }: 
             className="cities__map"
             city={CityLocation}
             offers={offers}
-            selectedOfferId={selectedOfferId}
+            selectedOfferId={offersId}
           />
         </div>
       </div>

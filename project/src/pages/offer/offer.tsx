@@ -24,8 +24,10 @@ const Offer = () => {
     return <>Loading...</>;
   }
 
+  const otherOffers = offersMock.filter((offer) => offer.id !== room.id);
+
   return (
-    < main className="page__main page__main--property" >
+    <main className="page__main page__main--property" >
       <section className="property">
         <div className="property__gallery-container container">
           <div className="property__gallery">
@@ -104,7 +106,8 @@ const Offer = () => {
         <Map
           className="property__map"
           city={CityLocation}
-          offers={offersMock.slice(0, COUNT_NEAR_OFFER)}
+          offers={[room, ...otherOffers.slice(0, COUNT_NEAR_OFFER)]}
+          selectedOfferId={room.id}
         />
       </section>
       <div className="container">

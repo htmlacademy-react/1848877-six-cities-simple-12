@@ -29,11 +29,11 @@ const currentCustomIcon = new Icon({
 const Map = ({ className, city, offers, selectedOfferId }: MapProps) => {
   const mapRef = useRef(null);
 
-  const map = useMap(mapRef, city);
-  const { addMarker, clearMarkers } = useMapMarkers(map);
+  const {map, mapMarkers} = useMap(mapRef, city);
+  const { addMarker, clearMarkers } = useMapMarkers({map, mapMarkers});
 
   useEffect(() => {
-    if (map) {
+    if (map && mapMarkers) {
       clearMarkers();
       offers.forEach((offer) => {
         const marker = new Marker({
@@ -46,8 +46,8 @@ const Map = ({ className, city, offers, selectedOfferId }: MapProps) => {
             selectedOfferId && offer.id === selectedOfferId
               ? currentCustomIcon
               : defaultCustomIcon
-          )
-          .addTo(map);
+          );
+        mapMarkers.addLayer(marker);
         addMarker(marker);
       });
     }

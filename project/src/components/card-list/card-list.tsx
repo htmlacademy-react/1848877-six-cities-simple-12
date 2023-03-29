@@ -3,7 +3,7 @@ import { Offers } from '../../types/offers';
 
 type ListCardProps = {
   offers: Offers[];
-  onListItemHover?: (listItemName: number | null) => void;
+  onListItemHover?: (id: number) => void;
   onMouseLeave?: () => void;
   cardType: 'home' | 'property';
 };

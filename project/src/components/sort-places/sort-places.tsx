@@ -2,33 +2,19 @@ import { useState } from 'react';
 import { SortingTypes } from '../../constants/constants';
 import { useAppDispatch } from '../../hooks';
 import { changeSort } from '../../store/action';
-
-const list = [
-  {
-    title: 'Popular',
-    value: SortingTypes.Popular,
-  },
-  {
-    title: 'Price: low to high',
-    value: SortingTypes.PriceLowToHigh,
-  },
-  {
-    title: 'Price: high to low',
-    value: SortingTypes.PriceHighToLow,
-  },
-  {
-    title: 'Top rated first',
-    value: SortingTypes.TopRatedFirst,
-  },
-];
+import { list } from './constants';
 
 const SortPlaces = ({ currentSortName }: {
   currentSortName: SortingTypes;
 }) => {
   const [opened, setOpened] = useState(false);
-  const toggleOpened = () => setOpened(!opened);
-  const currentValue = list.find((item) => item.value === currentSortName);
   const dispatch = useAppDispatch();
+
+  const currentValue = list.find((item) => item.value === currentSortName);
+
+  const toggleOpened = () => {
+    setOpened(!opened);
+  };
 
   const handleSortClick = (sortName: SortingTypes) => {
     dispatch(changeSort(sortName));

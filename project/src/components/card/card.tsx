@@ -30,9 +30,9 @@ const cardClassnames = {
   },
 };
 
-const getTypePlace = (type: string) => {
-  type.replace(type[0], type[0].toUpperCase());
-};
+const getTypePlace = (type: string) => (
+  type.replace(type[0], type[0].toUpperCase())
+);
 
 const Card = ({
   price, previewImage, title, type, isPremium, id, rating, onMouseEnter, cardType, onMouseLeave
