@@ -64,7 +64,7 @@ const Card = ({
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${getRatingColor(rating)}` }}></span>
+            <span style={{ width: `${getRatingColor(rating)}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
