@@ -11,7 +11,6 @@ type ReviewItemProps = {
 
 const ReviewItem = ({ comment, date, rating, user }: ReviewItemProps) => {
   const { avatarUrl, name } = user;
-  
   return (
     <li className="reviews__item">
       <div className="reviews__user user">

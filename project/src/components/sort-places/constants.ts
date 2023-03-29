@@ -1,4 +1,4 @@
-import { SortingTypes } from "../../constants/constants";
+import { SortingTypes } from '../../constants/constants';
 
 export const list = [
   {
