@@ -4,27 +4,29 @@ import ReviewForm from '../../components/review-form';
 import PropertyItem from '../property-item';
 import { useEffect, useState } from 'react';
 import { Offers } from '../../types/offers';
-import { CityLocation, offersMock } from '../../mocks/offers';
+import { CityLocation } from '../../mocks/offers';
 import { getRatingColor } from '../../utils/getRatingColor';
 import { COUNT_NEAR_OFFER } from '../../constants/constants';
 import ReviewList from '../../components/review-list';
 import { reviews } from '../../mocks/reviews';
 import CardList from '../../components/card-list';
 import Map from '../../components/map';
+import { useAppSelector } from '../../hooks';
 
 const Offer = () => {
   const { id } = useParams();
   const [room, setRoom] = useState<Offers>();
+  const offers = useAppSelector((state) => state.offers);
 
   useEffect(() => {
-    setRoom(offersMock.find((offer) => offer.id === Number(id)));
+    setRoom(offers.find((offer) => offer.id === Number(id)));
   }, [id]);
 
   if (!room) {
     return <>Loading...</>;
   }
 
-  const otherOffers = offersMock.filter((offer) => offer.id !== room.id);
+  const otherOffers = offers.filter((offer) => offer.id !== room.id);
 
   return (
     <main className="page__main page__main--property" >
@@ -115,7 +117,7 @@ const Offer = () => {
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <div className="near-places__list places__list">
             <CardList
-              offers={offersMock.slice(0, COUNT_NEAR_OFFER)}
+              offers={offers.slice(0, COUNT_NEAR_OFFER)}
               cardType="property"
             />
           </div>
