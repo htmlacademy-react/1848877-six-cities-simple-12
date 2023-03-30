@@ -5,6 +5,7 @@ import { Offers, City } from '../../types/offers';
 import useMap from '../../hooks/use-map';
 import { useEffect, useRef } from 'react';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from './constants';
+import { useMapMarkers } from '../../hooks/use-map/use-map';
 
 type MapProps = {
   className: string;
@@ -28,10 +29,12 @@ const currentCustomIcon = new Icon({
 const Map = ({ className, city, offers, selectedOfferId }: MapProps) => {
   const mapRef = useRef(null);
 
-  const map = useMap(mapRef, city);
+  const {map, mapMarkers} = useMap(mapRef, city);
+  const { addMarker, clearMarkers } = useMapMarkers({map, mapMarkers});
 
   useEffect(() => {
-    if (map) {
+    if (map && mapMarkers) {
+      clearMarkers();
       offers.forEach((offer) => {
         const marker = new Marker({
           lat: offer.location.latitude,
@@ -43,8 +46,9 @@ const Map = ({ className, city, offers, selectedOfferId }: MapProps) => {
             selectedOfferId && offer.id === selectedOfferId
               ? currentCustomIcon
               : defaultCustomIcon
-          )
-          .addTo(map);
+          );
+        mapMarkers.addLayer(marker);
+        addMarker(marker);
       });
     }
   }, [map, offers, selectedOfferId]);

@@ -12,6 +12,7 @@ type CardProps = {
   id: Offers['id'];
   rating: Offers['rating'];
   onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
   cardType: 'home' | 'property';
 }
 
@@ -29,17 +30,25 @@ const cardClassnames = {
   },
 };
 
-const Card = ({ price, previewImage, title, type, isPremium, id, rating, onMouseEnter, cardType }: CardProps) => {
+const getTypePlace = (type: string) => (
+  type.replace(type[0], type[0].toUpperCase())
+);
+
+const Card = ({
+  price, previewImage, title, type, isPremium, id, rating, onMouseEnter, cardType, onMouseLeave
+}: CardProps) => {
   const { article, image, cardInfo } = cardClassnames[cardType];
-  const typePlace = type.replace(type[0], type[0].toUpperCase());
+  const typePlace = getTypePlace(type);
 
   const link = generatePath(AppRoute.Offer, {
     id: `${id}`,
   });
 
   return (
-    <article className={article}
-      onMouseOver={() => onMouseEnter}
+    <article
+      className={article}
+      onMouseOver={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       <div className={isPremium ? 'place-card__mark' : ''}>
         <span>{isPremium ? 'Premium' : ''}</span>
@@ -59,7 +68,7 @@ const Card = ({ price, previewImage, title, type, isPremium, id, rating, onMouse
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${getRatingColor(rating)}` }}></span>
+            <span style={{ width: `${getRatingColor(rating)}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

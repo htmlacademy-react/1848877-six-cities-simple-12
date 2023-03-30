@@ -142,6 +142,142 @@ export const offersMock: Offers[] =
       title: 'Big Bang Family',
       type: 'apartment',
     },
+    {
+      bedrooms: 6,
+      city: {
+        location: {
+          latitude: 52.370216,
+          longitude: 4.895168,
+          zoom: 10,
+        },
+        name: 'Brussels',
+      },
+      description:
+        'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis',
+      goods: ['Towels', 'Napkins', 'Lights', 'Coffee machine', 'Kitchen'],
+      host: {
+        avatarUrl: 'img/avatar-angelina.jpg',
+        id: 3,
+        isPro: false,
+        name: 'Angelina',
+      },
+      id: 5,
+      images: ['img/apartment-01.jpg', 'img/apartment-02.jpg'],
+      isPremium: true,
+      location: {
+        latitude: 52.3109553943508,
+        longitude: 4.919309666406198,
+        zoom: 8,
+      },
+      maxAdults: 8,
+      previewImage: 'img/apartment-small-03.jpg',
+      price: 500,
+      rating: 2.0,
+      title: 'Big Bang Family',
+      type: 'apartment',
+    },
+    {
+      bedrooms: 6,
+      city: {
+        location: {
+          latitude: 52.370216,
+          longitude: 4.895168,
+          zoom: 10,
+        },
+        name: 'Brussels',
+      },
+      description:
+        'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis',
+      goods: ['Towels', 'Napkins', 'Lights', 'Coffee machine', 'Kitchen'],
+      host: {
+        avatarUrl: 'img/avatar-angelina.jpg',
+        id: 3,
+        isPro: false,
+        name: 'Angelina',
+      },
+      id: 6,
+      images: ['img/apartment-01.jpg', 'img/apartment-02.jpg'],
+      isPremium: true,
+      location: {
+        latitude: 52.3509553943508,
+        longitude: 4.959309666406198,
+        zoom: 8,
+      },
+      maxAdults: 8,
+      previewImage: 'img/apartment-small-03.jpg',
+      price: 800,
+      rating: 4.0,
+      title: 'Big Bang Family',
+      type: 'apartment',
+    },
+    {
+      bedrooms: 6,
+      city: {
+        location: {
+          latitude: 52.370216,
+          longitude: 4.895168,
+          zoom: 10,
+        },
+        name: 'Hamburg',
+      },
+      description:
+        'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis',
+      goods: ['Towels', 'Napkins', 'Lights', 'Coffee machine', 'Kitchen'],
+      host: {
+        avatarUrl: 'img/avatar-angelina.jpg',
+        id: 3,
+        isPro: false,
+        name: 'Angelina',
+      },
+      id: 7,
+      images: ['img/apartment-01.jpg', 'img/apartment-02.jpg'],
+      isPremium: true,
+      location: {
+        latitude: 52.3119553943508,
+        longitude: 4.911309666406198,
+        zoom: 8,
+      },
+      maxAdults: 8,
+      previewImage: 'img/apartment-small-03.jpg',
+      price: 500,
+      rating: 2.0,
+      title: 'Big Bang Family',
+      type: 'apartment',
+    },
+    {
+      bedrooms: 6,
+      city: {
+        location: {
+          latitude: 52.370216,
+          longitude: 4.895168,
+          zoom: 10,
+        },
+        name: 'Brussels',
+      },
+      description:
+        'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis',
+      goods: ['Towels', 'Napkins', 'Lights', 'Coffee machine', 'Kitchen'],
+      host: {
+        avatarUrl: 'img/avatar-angelina.jpg',
+        id: 3,
+        isPro: false,
+        name: 'Angelina',
+      },
+      id: 8,
+      images: ['img/apartment-01.jpg', 'img/apartment-02.jpg'],
+      isPremium: true,
+      location: {
+        latitude: 52.3009553943508,
+        longitude: 4.909309666406198,
+        zoom: 8,
+      },
+      maxAdults: 8,
+      previewImage: 'img/apartment-small-03.jpg',
+      price: 500,
+      rating: 2.0,
+      title: 'Big Bang Family',
+      type: 'apartment',
+    },
   ];
 
 export const CityLocation: City = {

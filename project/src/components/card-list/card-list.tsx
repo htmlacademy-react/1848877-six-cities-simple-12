@@ -1,18 +1,14 @@
 import Card from '../card';
 import { Offers } from '../../types/offers';
-//import { useState } from 'react';
 
 type ListCardProps = {
   offers: Offers[];
-  // onListItemHover?: (listItemName: number | null) => void;
+  onListItemHover?: (id: number) => void;
+  onMouseLeave?: () => void;
   cardType: 'home' | 'property';
 };
 
-const CardList = ({ offers, cardType }: ListCardProps) => {
-  //const [selectedOfferId, setSelectedOfferId] = useState<number | null>(
-  //null
-  //);
-  //return (
+const CardList = ({ offers, cardType, onListItemHover, onMouseLeave }: ListCardProps) => (
   <>
     {offers.map(({ price, previewImage, title, type, isPremium, id, rating }) => (
       <Card
@@ -24,13 +20,13 @@ const CardList = ({ offers, cardType }: ListCardProps) => {
         isPremium={isPremium}
         id={id}
         rating={rating}
-        // onMouseEnter={() => setSelectedOfferId?.(id)}
+        onMouseEnter={() => {onListItemHover?.(id);}}
+        onMouseLeave={onMouseLeave}
         cardType={cardType}
       />
     ))}
-  </>;
-  //);
-};
+  </>
+);
 
 
 export default CardList;

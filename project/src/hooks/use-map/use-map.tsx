@@ -1,13 +1,35 @@
-import leaflet, { Map } from 'leaflet';
+import leaflet, { Map, Marker, FeatureGroup } from 'leaflet';
 import { City } from '../../types/offers';
 import { useEffect, useState, useRef, MutableRefObject } from 'react';
 import { ATTRIBUTION, TITLE } from './constants';
 
+export const useMapMarkers = ({map, mapMarkers}:{
+  map: Map | null;
+  mapMarkers: FeatureGroup | null;
+}) => {
+  const [markers, setMarkers] = useState<Marker[]>([]);
+
+  const addMarker = (newMarker: Marker) => {
+    setMarkers((prevMarkers) => [...prevMarkers, newMarker]);
+  };
+
+  const clearMarkers = () => {
+    if (map) {
+      mapMarkers?.clearLayers();
+      setMarkers([]);
+    }
+  };
+
+  return {markers, addMarker, clearMarkers};
+};
+
 const useMap = (
   mapRef: MutableRefObject<HTMLElement | null>,
   city: City
-): Map | null => {
+): {map: Map | null; mapMarkers: FeatureGroup | null} => {
   const [map, setMap] = useState<Map | null>(null);
+  const [mapMarkers, setMapMarkers] = useState<FeatureGroup | null>(null);
+
   const isRenderedRef = useRef<boolean>(false);
 
   useEffect(() => {
@@ -20,17 +42,20 @@ const useMap = (
         zoom: city.location.zoom,
       });
 
-      const layer = new leaflet.TileLayer(TITLE, {
-        attribution: ATTRIBUTION,
-      });
-      instance.addLayer(layer);
+      leaflet
+        .tileLayer(TITLE, {
+          attribution: ATTRIBUTION,
+        })
+        .addTo(instance);
 
       setMap(instance);
+
+      setMapMarkers(new FeatureGroup().addTo(instance));
       isRenderedRef.current = true;
     }
   }, [mapRef, map, city]);
 
-  return map;
+  return {map, mapMarkers};
 };
 
 export default useMap;
