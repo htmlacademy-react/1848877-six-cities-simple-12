@@ -1,4 +1,5 @@
 import Cities from '../../components/cities';
+import MainEmpty from '../../components/main-empty';
 import MainPageContent from '../../components/main-page-content';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { cityChange } from '../../store/action';
@@ -23,7 +24,10 @@ const Main = () => {
     < main className="page__main page__main--index" >
       <h1 className="visually-hidden">Cities</h1>
       <Cities currentCity={curentCity} onChangeCity={onChangeCity} />
-      <MainPageContent placesCount={currentOffers.length} currentCity={curentCity} offers={sortingOffers} currentSortName={currentSortName} />
+      {currentOffers.length === 0 ? (
+        <MainEmpty city={curentCity} />
+      ) :
+        <MainPageContent placesCount={currentOffers.length} currentCity={curentCity} offers={sortingOffers} currentSortName={currentSortName} />}
     </main >
   );
 };

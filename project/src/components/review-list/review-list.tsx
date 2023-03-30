@@ -15,7 +15,7 @@ const getReviewList = (review: Review[]) => {
 const ReviewList = () => (
   <ul className="reviews__list">
     {getReviewList(reviews).map((review: Review) => (
-      <ReviewItem key={review.id} comment={review.comment} date={review.date} rating={review.rating} user={review.user} />
+      <ReviewItem key={review.user.name} comment={review.comment} date={review.date} rating={review.rating} user={review.user} />
     ))}
   </ul>
 );
