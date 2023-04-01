@@ -24,7 +24,7 @@ const Main = () => {
     < main className="page__main page__main--index" >
       <h1 className="visually-hidden">Cities</h1>
       <Cities currentCity={curentCity} onChangeCity={onChangeCity} />
-      {currentOffers.length === 0 ? (
+      {!currentOffers.length ? (
         <MainEmpty city={curentCity} />
       ) :
         <MainPageContent placesCount={currentOffers.length} currentCity={curentCity} offers={sortingOffers} currentSortName={currentSortName} />}

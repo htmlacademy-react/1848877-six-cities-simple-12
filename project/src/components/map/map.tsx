@@ -4,7 +4,7 @@ import { Icon, Marker } from 'leaflet';
 import { Offers, City } from '../../types/offers';
 import useMap from '../../hooks/use-map';
 import { useEffect, useRef } from 'react';
-import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from './constants';
+import { DEFAULT_COORDINATE, URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from './constants';
 import { useMapMarkers } from '../../hooks/use-map/use-map';
 
 type MapProps = {
@@ -31,6 +31,14 @@ const Map = ({ className, city, offers, selectedOfferId }: MapProps) => {
 
   const {map, mapMarkers} = useMap(mapRef, city);
   const { addMarker, clearMarkers } = useMapMarkers({map, mapMarkers});
+  const cityLocation = offers[0]?.city?.location ?? DEFAULT_COORDINATE;
+
+  useEffect(() => {
+    if (map) {
+      const { latitude, longitude, zoom } = cityLocation;
+      map.flyTo([latitude, longitude], zoom);
+    }
+  }, [map, cityLocation]);
 
   useEffect(() => {
     if (map && mapMarkers) {
@@ -52,6 +60,7 @@ const Map = ({ className, city, offers, selectedOfferId }: MapProps) => {
       });
     }
   }, [map, offers, selectedOfferId]);
+
 
   return (
     <section
