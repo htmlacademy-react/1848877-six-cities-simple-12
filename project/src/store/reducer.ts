@@ -1,8 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeSort, cityChange, offerIdChange, loadOffers, requireAuthorization, setError, setIsOffersDataLoading } from './action';
+import { changeSort, cityChange, offerIdChange, loadOffers, requireAuthorization, setError, setIsOffersDataLoading, setUserData } from './action';
 import { Offers } from '../types/offers';
 import { CITIES } from '../components/cities/constants';
 import { AuthorizationStatus, SortingTypes } from '../constants/constants';
+import { UserData } from '../types/user-data';
 
 type InitialState = {
   city: string;
@@ -12,6 +13,7 @@ type InitialState = {
   authorizationStatus: AuthorizationStatus;
   error: string | null;
   isOffersDataLoading: boolean;
+  userData: UserData | null;
 };
 
 const initialState: InitialState = {
@@ -22,6 +24,7 @@ const initialState: InitialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   error: null,
   isOffersDataLoading: false,
+  userData: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -42,10 +45,13 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setError, (state, action) => {
       state.error = action.payload;
+    })
+    .addCase(setIsOffersDataLoading, (state, action) => {
+      state.isOffersDataLoading = action.payload;
+    })
+    .addCase(setUserData, (state, action) => {
+      state.userData = action.payload;
     });
-  builder.addCase(setIsOffersDataLoading, (state, action) => {
-    state.isOffersDataLoading = action.payload;
-  });
 });
 
 export { reducer };

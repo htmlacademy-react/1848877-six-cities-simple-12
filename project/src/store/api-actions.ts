@@ -3,12 +3,13 @@ import { Offers } from '../types/offers';
 import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
 import { APIRoute, TIMEOUT_SHOW_ERROR } from '../services/constants';
-import { loadOffers, /*requireAuthorization,*/ setError, setIsOffersDataLoading } from './action';
-// import { AuthorizationStatus } from '../constants/constants';
-// import { AuthData } from '../types/auth-data';
-// import { UserData } from '../types/user-data';
-// import { dropToken, saveToken } from '../services/token';
+import { loadOffers, setRedirectToRoute, requireAuthorization, setError, setIsOffersDataLoading, setUserData } from './action';
+import { AuthorizationStatus } from '../constants/constants';
+import { AuthData } from '../types/auth-data';
+import { UserData } from '../types/user-data';
+import { dropToken, saveToken } from '../services/token';
 import { store } from '.';
+import { AppRoute } from '../router/RoutePath';
 
 export const clearErrorAction = createAsyncThunk(
   'game/clearError',
@@ -33,7 +34,7 @@ export const fetchOfferAction = createAsyncThunk<void, undefined, {
     dispatch(loadOffers(data));
   },
 );
-/*
+
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
   state: State;
@@ -57,9 +58,11 @@ export const loginAction = createAsyncThunk<void, AuthData, {
 }>(
   'user/login',
   async ({ login: email, password }, { dispatch, extra: api }) => {
-    const { data: { token } } = await api.post<UserData>(APIRoute.Login, { email, password });
-    saveToken(token);
+    const { data } = await api.post<UserData>(APIRoute.Login, { email, password });
+    saveToken(data.token);
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
+    dispatch(setUserData(data));
+    dispatch(setRedirectToRoute(AppRoute.Root));
   },
 );
 
@@ -73,7 +76,10 @@ export const logoutAction = createAsyncThunk<void, undefined, {
     await api.delete(APIRoute.Logout);
     dropToken();
     dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
+    dropToken();
+    dispatch(setUserData(null));
+    dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
   },
 );
-*/
+
 

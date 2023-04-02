@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { Offers } from '../../types/offers';
 import { CityLocation } from '../../mocks/offers';
 import { getRatingColor } from '../../utils/getRatingColor';
-import { COUNT_NEAR_OFFER } from '../../constants/constants';
+import { AuthorizationStatus, COUNT_NEAR_OFFER } from '../../constants/constants';
 import ReviewList from '../../components/review-list';
 import { reviews } from '../../mocks/reviews';
 import CardList from '../../components/card-list';
@@ -17,6 +17,7 @@ const Offer = () => {
   const { id } = useParams();
   const [room, setRoom] = useState<Offers>();
   const offers = useAppSelector((state) => state.offers);
+  const authStatus = useAppSelector((state) => state.authorizationStatus);
 
   useEffect(() => {
     setRoom(offers.find((offer) => offer.id === Number(id)));
@@ -101,7 +102,7 @@ const Offer = () => {
             <section className="property__reviews reviews">
               <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
               <ReviewList />
-              <ReviewForm />
+              {authStatus === AuthorizationStatus.Auth && <ReviewForm />}
             </section>
           </div>
         </div>
