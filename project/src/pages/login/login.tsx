@@ -8,6 +8,7 @@ import { AuthorizationStatus } from '../../constants/constants';
 import { AppRoute } from '../../router/RoutePath';
 import { Navigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import { isPasswordValidate } from './helpers';
 
 const Login = () => {
   const authStatus = useAppSelector((state) => state.authorizationStatus);
@@ -16,11 +17,6 @@ const Login = () => {
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const dispatch = useAppDispatch();
-
-  const isPasswordValidate = (password: string): boolean => {
-    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{2,}$/g;
-    return regex.test(password);
-  };
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));

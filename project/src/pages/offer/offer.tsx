@@ -102,7 +102,7 @@ const Offer = () => {
             <section className="property__reviews reviews">
               <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
               <ReviewList />
-              {authStatus === AuthorizationStatus.Auth && <ReviewForm />}
+              {authStatus === AuthorizationStatus.Auth ? <ReviewForm /> : null}
             </section>
           </div>
         </div>
