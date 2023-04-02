@@ -3,16 +3,17 @@ import { Offers } from '../types/offers';
 import { AppDispatch, State } from '../types/state';
 import { AxiosInstance } from 'axios';
 import { APIRoute, TIMEOUT_SHOW_ERROR } from '../services/constants';
-import { loadOffers, setRedirectToRoute, requireAuthorization, setError, setIsOffersDataLoading, setUserData } from './action';
+import { loadOffers, setRedirectToRoute, requireAuthorization, setError, setIsOffersDataLoading, setUserData, setLoadComments, setNearOffers } from './action';
 import { AuthorizationStatus } from '../constants/constants';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { dropToken, saveToken } from '../services/token';
 import { store } from '.';
 import { AppRoute } from '../router/RoutePath';
+import { Comment } from '../types/comments';
 
 export const clearErrorAction = createAsyncThunk(
-  'game/clearError',
+  'data/clearError',
   () => {
     setTimeout(
       () => store.dispatch(setError(null)),
@@ -82,4 +83,26 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   },
 );
 
+export const fetchCommentsAction = createAsyncThunk<void, number, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchComments',
+  async (offerId, { dispatch, extra: api }) => {
+    const { data } = await api.get<Comment[]>(`${APIRoute.Comments}/${offerId}`);
+    dispatch(setLoadComments(data));
+  },
+);
 
+export const fetchNearOffersAction = createAsyncThunk<void, number, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchNearOffers',
+  async (offerId, { dispatch, extra: api }) => {
+    const { data } = await api.get<Offers[]>(`${APIRoute.Offers}/${offerId}/nearby`);
+    dispatch(setNearOffers(data));
+  },
+);

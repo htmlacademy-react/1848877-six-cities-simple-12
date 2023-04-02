@@ -8,26 +8,35 @@ import { CityLocation } from '../../mocks/offers';
 import { getRatingColor } from '../../utils/getRatingColor';
 import { AuthorizationStatus, COUNT_NEAR_OFFER } from '../../constants/constants';
 import ReviewList from '../../components/review-list';
-import { reviews } from '../../mocks/reviews';
 import CardList from '../../components/card-list';
 import Map from '../../components/map';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { fetchCommentsAction, fetchNearOffersAction } from '../../store/api-actions';
 
 const Offer = () => {
   const { id } = useParams();
+  const offerId = Number(id);
+
+  const dispatch = useAppDispatch();
+
   const [room, setRoom] = useState<Offers>();
+
   const offers = useAppSelector((state) => state.offers);
   const authStatus = useAppSelector((state) => state.authorizationStatus);
+  const comments = useAppSelector((state) => state.loadComments);
+  const nearOffers = useAppSelector((state) => state.nearOffers);
 
   useEffect(() => {
     setRoom(offers.find((offer) => offer.id === Number(id)));
-  }, [id]);
+    dispatch(fetchCommentsAction(offerId));
+    dispatch(fetchNearOffersAction(offerId));
+  }, [id, offerId, dispatch]);
 
   if (!room) {
     return <>Loading...</>;
   }
 
-  const otherOffers = offers.filter((offer) => offer.id !== room.id);
+  const otherOffers = nearOffers.filter((offer) => offer.id !== room.id);
   const nearOtherOffers = otherOffers.filter((offer) => offer.city.name === room.city.name);
 
   return (
@@ -101,8 +110,8 @@ const Offer = () => {
               </div>
             </div>
             <section className="property__reviews reviews">
-              <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
-              <ReviewList />
+              <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
+              <ReviewList comments={comments} />
               {authStatus === AuthorizationStatus.Auth ? <ReviewForm /> : null}
             </section>
           </div>

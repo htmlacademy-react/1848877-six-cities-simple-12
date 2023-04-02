@@ -1,8 +1,12 @@
 import ReviewItem from '../review-item';
-import { reviews } from '../../mocks/reviews';
 import { MAX_REVIEWS } from './constants';
 import { humanizeDate } from '../../utils/humanizeDate';
 import { Review } from '../../types/review';
+import { Comment } from '../../types/comments';
+
+type ReviewProps = {
+  comments: Comment[];
+}
 
 const getReviewList = (review: Review[]) => {
   const reviewItems = review.slice(0, review.length > MAX_REVIEWS ? MAX_REVIEWS : review.length);
@@ -12,9 +16,9 @@ const getReviewList = (review: Review[]) => {
   return reviewItemList;
 };
 
-const ReviewList = () => (
+const ReviewList = ({ comments }: ReviewProps) => (
   <ul className="reviews__list">
-    {getReviewList(reviews).map((review: Review) => (
+    {getReviewList(comments).map((review: Review) => (
       <ReviewItem key={review.user.name} comment={review.comment} date={review.date} rating={review.rating} user={review.user} />
     ))}
   </ul>
