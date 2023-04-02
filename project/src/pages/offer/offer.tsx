@@ -28,6 +28,7 @@ const Offer = () => {
   }
 
   const otherOffers = offers.filter((offer) => offer.id !== room.id);
+  const nearOtherOffers = otherOffers.filter((offer) => offer.city.name === room.city.name);
 
   return (
     <main className="page__main page__main--property" >
@@ -109,7 +110,7 @@ const Offer = () => {
         <Map
           className="property__map"
           city={CityLocation}
-          offers={[room, ...otherOffers.slice(0, COUNT_NEAR_OFFER)]}
+          offers={[room, ...nearOtherOffers.slice(0, COUNT_NEAR_OFFER)]}
           selectedOfferId={room.id}
         />
       </section>
@@ -118,7 +119,7 @@ const Offer = () => {
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <div className="near-places__list places__list">
             <CardList
-              offers={offers.slice(0, COUNT_NEAR_OFFER)}
+              offers={nearOtherOffers.slice(0, COUNT_NEAR_OFFER)}
               cardType="property"
             />
           </div>
