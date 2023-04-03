@@ -1,10 +1,11 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeSort, cityChange, offerIdChange, loadOffers, requireAuthorization, setError, setIsOffersDataLoading, setUserData, setLoadComments, setNearOffers } from './action';
+import { changeSort, cityChange, offerIdChange, loadOffers, requireAuthorization, setError, setIsOffersDataLoading, setUserData, setLoadComments, setNearOffers, setNextReview, loadOfferById } from './action';
 import { Offers } from '../types/offers';
 import { CITIES } from '../components/cities/constants';
 import { AuthorizationStatus, SortingTypes } from '../constants/constants';
 import { UserData } from '../types/user-data';
 import { Comment } from '../types/comments';
+import { Review } from '../types/review';
 
 type InitialState = {
   city: string;
@@ -17,6 +18,8 @@ type InitialState = {
   userData: UserData | null;
   loadComments: Comment[];
   nearOffers: Offers[];
+  nextReview: Review | null;
+  offer: Offers | null;
 };
 
 const initialState: InitialState = {
@@ -30,6 +33,8 @@ const initialState: InitialState = {
   userData: null,
   loadComments: [],
   nearOffers: [],
+  nextReview: null,
+  offer: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -62,6 +67,12 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setNearOffers, (state, action) => {
       state.nearOffers = action.payload;
+    })
+    .addCase(setNextReview, (state, action) => {
+      state.nextReview = action.payload;
+    })
+    .addCase(loadOfferById, (state, action) => {
+      state.offer = action.payload;
     });
 });
 

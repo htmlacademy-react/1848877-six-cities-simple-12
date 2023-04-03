@@ -4,6 +4,7 @@ import { Offers } from '../types/offers';
 import { UserData } from '../types/user-data';
 import { AppRoute } from '../router/RoutePath';
 import { Comment } from '../types/comments';
+import { Review } from '../types/review';
 
 export const cityChange = createAction('offers/cityChange', (city: string) => ({
   payload: city,
@@ -48,4 +49,12 @@ export const setLoadComments = createAction('comments/loadComments', (loadCommen
 
 export const setNearOffers = createAction('comments/nearOffers', (nearOffers: Offers[]) => ({
   payload: nearOffers
+}));
+
+export const setNextReview = createAction('reviews/setNextReview', (nextReview: Review) => ({
+  payload: nextReview
+}));
+
+export const loadOfferById = createAction('data/loadOfferById', (offer: Offers) => ({
+  payload: offer
 }));

@@ -5,3 +5,9 @@ export const REVIEW_STARS = [
   { value: 2, title: 'terribly' },
   { value: 1, title: 'badly' },
 ];
+
+export enum ReviewLength {
+  Min = 50,
+  Max = 300
+}
+

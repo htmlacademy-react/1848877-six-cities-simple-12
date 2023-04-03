@@ -11,12 +11,12 @@ import ReviewList from '../../components/review-list';
 import CardList from '../../components/card-list';
 import Map from '../../components/map';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { fetchCommentsAction, fetchNearOffersAction } from '../../store/api-actions';
+import { fetchCommentsAction, fetchNearOffersAction, fetchOfferByIdAction } from '../../store/api-actions';
+import PropertyDescription from '../../components/property-description';
 
 const Offer = () => {
   const { id } = useParams();
   const offerId = Number(id);
-
   const dispatch = useAppDispatch();
 
   const [room, setRoom] = useState<Offers>();
@@ -27,10 +27,11 @@ const Offer = () => {
   const nearOffers = useAppSelector((state) => state.nearOffers);
 
   useEffect(() => {
-    setRoom(offers.find((offer) => offer.id === Number(id)));
-    dispatch(fetchCommentsAction(offerId));
+    setRoom(offers.find((offer) => offer.id === offerId));
+    dispatch(fetchCommentsAction({ id: offerId }));
     dispatch(fetchNearOffersAction(offerId));
-  }, [id, offerId, dispatch]);
+    dispatch(fetchOfferByIdAction({ id: offerId }));
+  }, [offerId, dispatch]);
 
   if (!room) {
     return <>Loading...</>;
@@ -96,23 +97,16 @@ const Offer = () => {
                 <span className="property__user-name">
                   {room.host.name}
                 </span>
-                <span className="property__user-status">
-                  {room.host.isPro}
-                </span>
+                {room.host.isPro && <span className="property__user-status">Pro</span>}
               </div>
               <div className="property__description">
-                <p className="property__text">
-                  A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                </p>
-                <p className="property__text">
-                  An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
-                </p>
+                <PropertyDescription description={room.description} />
               </div>
             </div>
             <section className="property__reviews reviews">
               <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
               <ReviewList comments={comments} />
-              {authStatus === AuthorizationStatus.Auth ? <ReviewForm /> : null}
+              {authStatus === AuthorizationStatus.Auth ? <ReviewForm offerId={offerId} /> : null}
             </section>
           </div>
         </div>

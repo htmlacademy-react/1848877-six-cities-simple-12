@@ -3,25 +3,33 @@ import { MAX_REVIEWS } from './constants';
 import { humanizeDate } from '../../utils/humanizeDate';
 import { Review } from '../../types/review';
 import { Comment } from '../../types/comments';
+import { useEffect, useState } from 'react';
 
 type ReviewProps = {
   comments: Comment[];
 }
 
 const getReviewList = (review: Review[]) => {
-  const reviewItems = review.slice(0, review.length > MAX_REVIEWS ? MAX_REVIEWS : review.length);
+  const items = [...review];
 
-  const reviewItemList = reviewItems.sort((a, b) => new Date(humanizeDate(b.date, 'YYYY-MM-DD')).getTime() - new Date(humanizeDate(a.date, 'YYYY-MM-DD')).getTime());
+  items.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-  return reviewItemList;
+  return items;
 };
 
-const ReviewList = ({ comments }: ReviewProps) => (
-  <ul className="reviews__list">
-    {getReviewList(comments).map((review: Review) => (
-      <ReviewItem key={review.user.name} comment={review.comment} date={review.date} rating={review.rating} user={review.user} />
-    ))}
-  </ul>
-);
+const ReviewList = ({ comments }: ReviewProps) => {
+  const [currentReviews, setCurrentReviews] = useState<Review[]>([]);
 
+  useEffect(() => {
+    setCurrentReviews(comments);
+  }, [comments]);
+  console.log(currentReviews, getReviewList(currentReviews))
+  return (
+    <ul className="reviews__list">
+      {getReviewList(currentReviews).slice(0, MAX_REVIEWS).map((review: Review) => (
+        <ReviewItem key={review.id} comment={review.comment} date={review.date} rating={review.rating} user={review.user} />
+      ))}
+    </ul>
+  );
+};
 export default ReviewList;
