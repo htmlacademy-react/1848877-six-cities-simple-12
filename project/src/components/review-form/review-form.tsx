@@ -4,7 +4,7 @@ import { ReviewComment } from '../../types/review';
 import Rating from '../rating';
 import { REVIEW_STARS, ReviewLength } from './constants';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import './review-form.css'
+import './review-form.css';
 
 type ReviewFormProps = {
   offerId: number;
@@ -20,7 +20,7 @@ const ReviewForm = ({ offerId }: ReviewFormProps) => {
 
   const [isSubmitDisabled, setSubmitDisabled] = useState(false);
   const [isFormDisabled, setFormDisabled] = useState(false);
-console.log(isFormDisabled, isSubmitDisabled)
+
   useEffect(() => {
     const isDisable = !!(data.review.length > ReviewLength.Max || data.review.length < ReviewLength.Min || !data.rating);
     setSubmitDisabled(isDisable);
@@ -57,7 +57,7 @@ console.log(isFormDisabled, isSubmitDisabled)
       review: ''
     });
     setSubmitDisabled(false);
-    setFormDisabled(false)
+    setFormDisabled(false);
   };
 
   return (

@@ -1,6 +1,5 @@
 import ReviewItem from '../review-item';
 import { MAX_REVIEWS } from './constants';
-import { humanizeDate } from '../../utils/humanizeDate';
 import { Review } from '../../types/review';
 import { Comment } from '../../types/comments';
 import { useEffect, useState } from 'react';
@@ -23,7 +22,7 @@ const ReviewList = ({ comments }: ReviewProps) => {
   useEffect(() => {
     setCurrentReviews(comments);
   }, [comments]);
-  console.log(currentReviews, getReviewList(currentReviews))
+
   return (
     <ul className="reviews__list">
       {getReviewList(currentReviews).slice(0, MAX_REVIEWS).map((review: Review) => (
