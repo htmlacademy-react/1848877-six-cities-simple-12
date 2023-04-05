@@ -5,3 +5,9 @@ export const REVIEW_STARS = [
   { value: 2, title: 'terribly' },
   { value: 1, title: 'badly' },
 ];
+
+export const REVIEW_LENGTH = {
+  Min: 50,
+  Max: 300
+};
+

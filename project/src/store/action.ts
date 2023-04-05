@@ -3,6 +3,8 @@ import { AuthorizationStatus, SortingTypes } from '../constants/constants';
 import { Offers } from '../types/offers';
 import { UserData } from '../types/user-data';
 import { AppRoute } from '../router/RoutePath';
+import { Comment } from '../types/comments';
+import { Review } from '../types/review';
 
 export const cityChange = createAction('offers/cityChange', (city: string) => ({
   payload: city,
@@ -39,4 +41,20 @@ export const setUserData = createAction('user/setUserData', (userData: UserData 
 
 export const setRedirectToRoute = createAction('app/redirectToRoute', (redirectToRoute: AppRoute) => ({
   payload: redirectToRoute
+}));
+
+export const setLoadComments = createAction('comments/loadComments', (loadComments: Comment[]) => ({
+  payload: loadComments
+}));
+
+export const setNearOffers = createAction('comments/nearOffers', (nearOffers: Offers[]) => ({
+  payload: nearOffers
+}));
+
+export const setNextReview = createAction('reviews/setNextReview', (nextReview: Review) => ({
+  payload: nextReview
+}));
+
+export const loadOfferById = createAction('data/loadOfferById', (offer: Offers) => ({
+  payload: offer
 }));

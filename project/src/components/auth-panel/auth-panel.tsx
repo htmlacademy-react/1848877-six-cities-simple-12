@@ -20,7 +20,9 @@ const AuthPanel = () => {
         <li className="header__nav-item user">
           {authStatus === AuthorizationStatus.Auth &&
             <div className="header__nav-profile">
-              <div className="header__avatar-wrapper user__avatar-wrapper"></div>
+              <div className="header__avatar-wrapper user__avatar-wrapper">
+                <img src={userData?.avatarUrl} alt={userData?.name} />
+              </div>
               <span className="header__user-name user__name">{userData?.email}</span>
             </div>}
         </li>
