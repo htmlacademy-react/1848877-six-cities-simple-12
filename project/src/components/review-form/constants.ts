@@ -6,8 +6,8 @@ export const REVIEW_STARS = [
   { value: 1, title: 'badly' },
 ];
 
-export enum ReviewLength {
-  Min = 50,
-  Max = 300
-}
+export const REVIEW_LENGTH = {
+  Min: 50,
+  Max: 300
+};
 

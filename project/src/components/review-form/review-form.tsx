@@ -2,7 +2,7 @@ import { useAppDispatch } from '../../hooks';
 import { sendCommentAction } from '../../store/api-actions';
 import { ReviewComment } from '../../types/review';
 import Rating from '../rating';
-import { REVIEW_STARS, ReviewLength } from './constants';
+import { REVIEW_STARS, REVIEW_LENGTH } from './constants';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import './review-form.css';
 
@@ -22,7 +22,7 @@ const ReviewForm = ({ offerId }: ReviewFormProps) => {
   const [isFormDisabled, setFormDisabled] = useState(false);
 
   useEffect(() => {
-    const isDisable = !!(data.review.length > ReviewLength.Max || data.review.length < ReviewLength.Min || !data.rating);
+    const isDisable = !!(data.review.length > REVIEW_LENGTH.Max || data.review.length < REVIEW_LENGTH.Min || !data.rating);
     setSubmitDisabled(isDisable);
   }, [data.rating, data.review]);
 
@@ -76,7 +76,7 @@ const ReviewForm = ({ offerId }: ReviewFormProps) => {
         <textarea onChange={changeDataHandle} className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" value={data.review}></textarea>
         <div className="reviews__button-wrapper">
           <p className="reviews__help">
-            To submit review please make sure to set {''} <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">{ReviewLength.Min}characters</b>.
+            To submit review please make sure to set {''} <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">{REVIEW_LENGTH.Min}characters</b>.
           </p>
           <button className="reviews__submit form__submit button" type="submit" disabled={isSubmitDisabled}>Submit</button>
         </div>
