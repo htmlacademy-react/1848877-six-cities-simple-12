@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import { Offers } from '../../types/offers';
 import { CityLocation } from '../../mocks/offers';
 import { getRatingColor } from '../../utils/getRatingColor';
-import { AuthorizationStatus, COUNT_NEAR_OFFER } from '../../constants/constants';
 import ReviewList from '../../components/review-list';
 import CardList from '../../components/card-list';
 import Map from '../../components/map';
@@ -15,6 +14,8 @@ import { fetchCommentsAction, fetchNearOffersAction, fetchOfferByIdAction } from
 import PropertyDescription from '../../components/property-description';
 import NotFound from '../not-found';
 import Badge from '../../components/badge';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { AuthorizationStatus, COUNT_NEAR_OFFER } from '../../constants/constants';
 
 const Offer = () => {
   const { id } = useParams();
@@ -23,10 +24,10 @@ const Offer = () => {
 
   const [room, setRoom] = useState<Offers>();
 
-  const offers = useAppSelector((state) => state.offers);
-  const authStatus = useAppSelector((state) => state.authorizationStatus);
-  const comments = useAppSelector((state) => state.loadComments);
-  const nearOffers = useAppSelector((state) => state.nearOffers);
+  const offers = useAppSelector((state) => state.reducer.offers);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const comments = useAppSelector((state) => state.reducer.loadComments);
+  const nearOffers = useAppSelector((state) => state.reducer.nearOffers);
 
   useEffect(() => {
     setRoom(offers.find((offer) => offer.id === offerId));
@@ -106,7 +107,7 @@ const Offer = () => {
             <section className="property__reviews reviews">
               <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
               <ReviewList comments={comments} />
-              {authStatus === AuthorizationStatus.Auth ? <ReviewForm offerId={offerId} /> : null}
+              {authorizationStatus === AuthorizationStatus.Auth ? <ReviewForm offerId={offerId} /> : null}
             </section>
           </div>
         </div>

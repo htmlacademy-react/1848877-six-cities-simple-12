@@ -7,9 +7,9 @@ import { getSortingOffers } from '../../utils/getSortingOffers';
 
 const Main = () => {
   const dispatch = useAppDispatch();
-  const curentCity = useAppSelector((state) => state.city);
-  const offers = useAppSelector((state) => state.offers);
-  const currentSortName = useAppSelector((state) => state.sortName);
+  const curentCity = useAppSelector((state) => state.reducer.city);
+  const offers = useAppSelector((state) => state.reducer.offers);
+  const currentSortName = useAppSelector((state) => state.reducer.sortName);
 
   const onChangeCity = (city: string) => {
     dispatch(cityChange(city));

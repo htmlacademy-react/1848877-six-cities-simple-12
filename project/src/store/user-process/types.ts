@@ -5,4 +5,4 @@ export type UserData = {
   name: string;
   isPro: boolean;
   avatarUrl: string;
-};
+} | null;

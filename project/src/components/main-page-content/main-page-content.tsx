@@ -15,7 +15,7 @@ type MainPageContent = {
 
 const MainPageContent = ({ placesCount, currentCity, offers, currentSortName }: MainPageContent) => {
   const dispatch = useAppDispatch();
-  const offersId = useAppSelector((state) => state.id);
+  const offersId = useAppSelector((state) => state.reducer.id);
 
   const onListItemHover = (id: number) => {
     dispatch(offerIdChange(id));
