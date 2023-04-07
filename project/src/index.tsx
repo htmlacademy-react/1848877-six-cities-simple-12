@@ -4,9 +4,9 @@ import App from './components/app/index';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import ErrorMessage from './components/error-message';
-import { fetchOfferAction} from './store/api-actions';
 import { ToastContainer } from 'react-toastify';
-import { checkAuthAction } from './store/user-process/user-process';
+import { checkAuthAction } from './store/user-process/api-actions';
+import { fetchOfferAction } from './store/offer-process/api-actions';
 
 store.dispatch(fetchOfferAction());
 store.dispatch(checkAuthAction());

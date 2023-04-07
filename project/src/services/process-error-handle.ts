@@ -1,6 +1,6 @@
 import {store} from '../store';
-import {setError} from '../store/action';
-import {clearErrorAction} from '../store/api-actions';
+import { clearErrorAction } from '../store/offer-process/api-actions';
+import { setError } from '../store/offer-process/offer-process';
 
 export const processErrorHandle = (message: string): void => {
   store.dispatch(setError(message));

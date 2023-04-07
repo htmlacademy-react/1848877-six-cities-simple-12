@@ -10,12 +10,14 @@ import ReviewList from '../../components/review-list';
 import CardList from '../../components/card-list';
 import Map from '../../components/map';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { fetchCommentsAction, fetchNearOffersAction, fetchOfferByIdAction } from '../../store/api-actions';
 import PropertyDescription from '../../components/property-description';
 import NotFound from '../not-found';
 import Badge from '../../components/badge';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { AuthorizationStatus, COUNT_NEAR_OFFER } from '../../constants/constants';
+import { fetchCommentsAction } from '../../store/comments-process/api-actionts';
+import { fetchNearOffersAction } from '../../store/near-offers-process/api-actions';
+import { fetchOfferByIdAction } from '../../store/offer-process/api-actions';
 
 const Offer = () => {
   const { id } = useParams();
@@ -24,10 +26,10 @@ const Offer = () => {
 
   const [room, setRoom] = useState<Offers>();
 
-  const offers = useAppSelector((state) => state.reducer.offers);
+  const offers = useAppSelector((state) => state.OFFER.offers);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  const comments = useAppSelector((state) => state.reducer.loadComments);
-  const nearOffers = useAppSelector((state) => state.reducer.nearOffers);
+  const comments = useAppSelector((state) => state.COMMENT.loadComments);
+  const nearOffers = useAppSelector((state) => state.NEAR_OFFERS.nearOffers);
 
   useEffect(() => {
     setRoom(offers.find((offer) => offer.id === offerId));

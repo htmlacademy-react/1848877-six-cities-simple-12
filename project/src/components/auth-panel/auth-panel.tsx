@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { AuthorizationStatus } from '../../constants/constants';
-import { logoutAction } from '../../store/user-process/user-process';
+import { logoutAction } from '../../store/user-process/api-actions';
 
 const AuthPanel = () => {
   const dispatch = useAppDispatch();
 
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  const userData = useAppSelector((state) => state.reducer.userData);
+  const userData = useAppSelector((state) => state.USER.userData);
 
   const handleOutClick = (evt: React.MouseEvent<HTMLElement>) => {
     evt.preventDefault();

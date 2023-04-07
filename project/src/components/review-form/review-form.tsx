@@ -1,10 +1,10 @@
 import { useAppDispatch } from '../../hooks';
-import { sendCommentAction } from '../../store/api-actions';
 import { ReviewComment } from '../../types/review';
 import Rating from '../rating';
 import { REVIEW_STARS, REVIEW_LENGTH } from './constants';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import './review-form.css';
+import { sendCommentAction } from '../../store/comments-process/api-actionts';
 
 type ReviewFormProps = {
   offerId: number;

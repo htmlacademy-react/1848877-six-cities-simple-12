@@ -15,4 +15,7 @@ export enum SortingTypes {
 
 export enum NameSpace {
   User = 'USER',
+  Offer = 'OFFER',
+  Comment = 'COMMENT',
+  NearOffers = 'NEAR_OFFERS'
 }

@@ -9,7 +9,7 @@ import { Navigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { isPasswordValidate } from './helpers';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
-import { loginAction } from '../../store/user-process/user-process';
+import { loginAction } from '../../store/user-process/api-actions';
 
 const Login = () => {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);

@@ -13,7 +13,7 @@ import { getAuthCheckedStatus } from '../store/user-process/selectors';
 
 
 const Router = () => {
-  const isOfferDataLoading = useAppSelector((state) => state.reducer.isOffersDataLoading);
+  const isOfferDataLoading = useAppSelector((state) => state.OFFER.isOffersDataLoading);
   const isAuthChecked = useAppSelector(getAuthCheckedStatus);
 
   if (!isAuthChecked || isOfferDataLoading) {
