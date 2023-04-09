@@ -4,7 +4,7 @@ import SortPlaces from '../sort-places';
 import Map from '../map';
 import { SortingTypes } from '../../constants/constants';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { offerIdChange } from '../../store/action';
+import { offerIdChange } from '../../store/offer-process/offer-process';
 
 type MainPageContent = {
   placesCount: number;
@@ -15,7 +15,7 @@ type MainPageContent = {
 
 const MainPageContent = ({ placesCount, currentCity, offers, currentSortName }: MainPageContent) => {
   const dispatch = useAppDispatch();
-  const offersId = useAppSelector((state) => state.id);
+  const offersId = useAppSelector((state) => state.OFFER.id);
 
   const onListItemHover = (id: number) => {
     dispatch(offerIdChange(id));

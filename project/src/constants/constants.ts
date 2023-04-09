@@ -12,3 +12,10 @@ export enum SortingTypes {
   TopRatedFirst = 'TOP_RATED_FIRST',
   Popular = 'POPULAR',
 }
+
+export enum NameSpace {
+  User = 'USER',
+  Offer = 'OFFER',
+  Comment = 'COMMENT',
+  NearOffers = 'NEAR_OFFERS'
+}

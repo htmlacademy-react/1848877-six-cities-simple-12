@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { SortingTypes } from '../../constants/constants';
 import { useAppDispatch } from '../../hooks';
-import { changeSort } from '../../store/action';
 import { list } from './constants';
+import { changeSort } from '../../store/offer-process/offer-process';
 
 const SortPlaces = ({ currentSortName }: {
   currentSortName: SortingTypes;

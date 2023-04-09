@@ -1,7 +1,6 @@
 import { FormEvent, useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { AuthData } from '../../types/auth-data';
-import { loginAction } from '../../store/api-actions';
 import { toast } from 'react-toastify';
 import Logo from '../../components/logo';
 import { AuthorizationStatus } from '../../constants/constants';
@@ -9,9 +8,11 @@ import { AppRoute } from '../../router/RoutePath';
 import { Navigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { isPasswordValidate } from './helpers';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { loginAction } from '../../store/user-process/api-actions';
 
 const Login = () => {
-  const authStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
@@ -37,7 +38,7 @@ const Login = () => {
     }
   };
 
-  return (authStatus === AuthorizationStatus.Auth ?
+  return (authorizationStatus === AuthorizationStatus.Auth ?
     <Navigate to={AppRoute.Root} /> : (
       <div>
         <div className="page page--gray page--login">

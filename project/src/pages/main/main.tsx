@@ -2,14 +2,14 @@ import Cities from '../../components/cities';
 import MainEmpty from '../../components/main-empty';
 import MainPageContent from '../../components/main-page-content';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { cityChange } from '../../store/action';
+import { cityChange } from '../../store/offer-process/offer-process';
 import { getSortingOffers } from '../../utils/getSortingOffers';
 
 const Main = () => {
   const dispatch = useAppDispatch();
-  const curentCity = useAppSelector((state) => state.city);
-  const offers = useAppSelector((state) => state.offers);
-  const currentSortName = useAppSelector((state) => state.sortName);
+  const curentCity = useAppSelector((state) => state.OFFER.city);
+  const offers = useAppSelector((state) => state.OFFER.offers);
+  const currentSortName = useAppSelector((state) => state.OFFER.sortName);
 
   const onChangeCity = (city: string) => {
     dispatch(cityChange(city));

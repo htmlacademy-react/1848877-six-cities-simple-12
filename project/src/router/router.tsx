@@ -5,18 +5,18 @@ import Login from '../pages/login';
 import { AppRoute } from './RoutePath';
 import NotFound from '../pages/not-found';
 import { useAppSelector } from '../hooks';
-import { AuthorizationStatus } from '../constants/constants';
 import LoadingScreen from '../components/loading-screen';
 import HistoryRouter from '../components/history-router';
 import browserHistory from '../browser-history/browser-history';
 import Layout from '../components/layout';
+import { getAuthCheckedStatus } from '../store/user-process/selectors';
 
 
 const Router = () => {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isOfferDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+  const isOfferDataLoading = useAppSelector((state) => state.OFFER.isOffersDataLoading);
+  const isAuthChecked = useAppSelector(getAuthCheckedStatus);
 
-  if (authorizationStatus === AuthorizationStatus.Unknown || isOfferDataLoading) {
+  if (!isAuthChecked || isOfferDataLoading) {
     return (
       <LoadingScreen />
     );
