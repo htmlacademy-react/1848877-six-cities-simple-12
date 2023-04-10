@@ -15,12 +15,8 @@ export const fetchCommentsAction = createAsyncThunk<void, OfferId, {
 }>(
   'data/fetchComments',
   async ({ id }, { dispatch, extra: api }) => {
-    try {
-      const { data } = await api.get<Comment[]>(`${APIRoute.Comments}/${id}`);
-      dispatch(setLoadComments(data));
-    } catch (e) {
-      toast.error('Cannot get comment');
-    }
+    const { data } = await api.get<Comment[]>(`${APIRoute.Comments}/${id}`);
+    dispatch(setLoadComments(data));
   },
 );
 

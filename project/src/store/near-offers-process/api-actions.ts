@@ -14,11 +14,7 @@ export const fetchNearOffersAction = createAsyncThunk<void, number, {
 }>(
   'data/fetchNearOffers',
   async (offerId, { dispatch, extra: api }) => {
-    try {
     const { data } = await api.get<Offers[]>(`${APIRoute.Offers}/${offerId}/nearby`);
     dispatch(setNearOffers(data));
-    } catch (e) {
-      toast.error('Cannot get nearby offers');
-    }
   },
 );
