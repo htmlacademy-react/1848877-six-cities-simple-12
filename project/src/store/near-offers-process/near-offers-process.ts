@@ -3,7 +3,7 @@ import { NameSpace } from '../../constants/constants';
 import { Offers } from '../../types/offers';
 import { NearOffersProcess } from './types';
 
-const initialState: NearOffersProcess = {
+export const initialState: NearOffersProcess = {
   nearOffers: [],
 };
 

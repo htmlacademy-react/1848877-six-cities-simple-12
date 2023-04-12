@@ -4,10 +4,15 @@ import { AuthData } from '../../types/auth-data';
 import { dropToken, saveToken } from '../../services/token';
 import { AxiosInstance } from 'axios';
 import { AppDispatch, State } from '../../types/state';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { UserData } from './types';
-import { setRedirectToRoute, setUserData } from './user-process';
+import { setUserData } from './user-process';
 import { AppRoute } from '../../router/RoutePath';
+
+export const redirectToRoute = createAction(
+  'app/redirectToRoute',
+  (route: AppRoute) => ({ payload: route })
+);
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -16,13 +21,8 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
 }>(
   'user/checkAuth',
   async (_arg, { dispatch, extra: api }) => {
-    try {
       const { data } = await api.get<UserData>(APIRoute.Login);
       dispatch(setUserData(data));
-    } catch (e) {
-      toast.error('Failed to check authorization');
-      throw e;
-    }
   },
 );
 
@@ -39,7 +39,7 @@ export const loginAction = createAsyncThunk<void, AuthData, {
         saveToken(data.token);
       }
       dispatch(setUserData(data));
-      dispatch(setRedirectToRoute(AppRoute.Root));
+      dispatch(redirectToRoute(AppRoute.Root));
     } catch (e) {
       toast.error('Failed to authorization');
       throw e;

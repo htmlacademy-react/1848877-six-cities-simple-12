@@ -1,13 +1,11 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { AuthorizationStatus, NameSpace } from '../../constants/constants';
 import { UserData, UserProcess } from './types';
-import { AppRoute } from '../../router/RoutePath';
 import { checkAuthAction, loginAction, logoutAction } from './api-actions';
 
 const initialState: UserProcess = {
   authorizationStatus: AuthorizationStatus.Unknown,
   userData: null,
-  redirectToRoute: null,
 };
 
 export const userProcessSlice = createSlice({
@@ -16,9 +14,6 @@ export const userProcessSlice = createSlice({
   reducers: {
     setUserData: (state, action: PayloadAction<UserData>) => {
       state.userData = action.payload;
-    },
-    setRedirectToRoute: (state, action: PayloadAction<AppRoute | null>) => {
-      state.redirectToRoute = action.payload;
     },
   },
   extraReducers(builder) {
@@ -41,4 +36,4 @@ export const userProcessSlice = createSlice({
   }
 });
 
-export const { setUserData, setRedirectToRoute } = userProcessSlice.actions;
+export const { setUserData } = userProcessSlice.actions;

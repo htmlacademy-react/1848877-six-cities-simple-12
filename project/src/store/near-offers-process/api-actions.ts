@@ -4,8 +4,6 @@ import { AxiosInstance } from 'axios';
 import { APIRoute } from '../../services/constants';
 import { Offers } from '../../types/offers';
 import { setNearOffers } from './near-offers-process';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 export const fetchNearOffersAction = createAsyncThunk<void, number, {
   dispatch: AppDispatch;
