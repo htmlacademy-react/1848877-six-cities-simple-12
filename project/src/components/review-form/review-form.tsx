@@ -34,6 +34,7 @@ const ReviewForm = ({ offerId }: ReviewFormProps) => {
     setFormDisabled(true);
     dispatch(sendCommentAction(reviewData));
     clearForm();
+    setFormDisabled(false);
   };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
@@ -56,8 +57,8 @@ const ReviewForm = ({ offerId }: ReviewFormProps) => {
       rating: '',
       review: ''
     });
+
     setSubmitDisabled(false);
-    setFormDisabled(false);
   };
 
   return (
