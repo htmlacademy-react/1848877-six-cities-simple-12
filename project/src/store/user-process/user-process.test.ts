@@ -23,7 +23,8 @@ describe('Reducer: userData', () => {
   describe('Action: checkAuthAction', () => {
     it('should update the status to "Auth" and return "UserData" if checkAuthAction fulfilled', () =>
       expect(
-        userProcessSlice.reducer(state, { type: checkAuthAction.fulfilled.type })).toEqual({ authorizationStatus: AuthorizationStatus.Auth, userData: null }));
+        userProcessSlice.reducer(state, { type: checkAuthAction.fulfilled.type }))
+        .toEqual({ authorizationStatus: AuthorizationStatus.Auth, userData: null }));
 
     expect(userProcessSlice.reducer(state, {
       type: setUserData,
