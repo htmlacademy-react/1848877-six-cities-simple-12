@@ -1,9 +1,9 @@
-import { CITIES } from "../../components/cities/constants";
-import { SortingTypes } from "../../constants/constants";
-import { makeFakeOffers } from "../../utils/mocks";
-import { fetchOfferAction } from "./api-actions";
-import { offerProcessSlice } from "./offer-process";
-import { OfferProcess } from "./types";
+import { CITIES } from '../../components/cities/constants';
+import { SortingTypes } from '../../constants/constants';
+import { makeFakeOffers } from '../../utils/mocks';
+import { fetchOfferAction } from './api-actions';
+import { offerProcessSlice } from './offer-process';
+import { OfferProcess } from './types';
 
 describe('reducer: offerData', () => {
   let state: OfferProcess;
@@ -20,15 +20,13 @@ describe('reducer: offerData', () => {
     };
   });
 
-  it('Should return initial state', () => {
-    expect(offerProcessSlice.reducer(undefined, { type: 'UNKNOWN_ACTION' })).toEqual(state);
-  }),
+  it('Should return initial state', () => { expect(offerProcessSlice.reducer(undefined, { type: 'UNKNOWN_ACTION' })).toEqual(state); });
 
-    it('Should return data loaded', () => {
-      const reducer = offerProcessSlice.reducer(state, {
-        type: fetchOfferAction,
-        payload: makeFakeOffers()
-      })
-      expect(reducer).toEqual({ ...state, isOffersDataLoading: false });
-    })
-})
+  it('isOffersDataLoading', () => {
+    const reducer = offerProcessSlice.reducer(state, {
+      type: fetchOfferAction,
+      payload: makeFakeOffers()
+    });
+    expect(reducer).toEqual({ ...state, isOffersDataLoading: false });
+  });
+});

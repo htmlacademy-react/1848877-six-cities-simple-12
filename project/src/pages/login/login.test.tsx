@@ -10,7 +10,7 @@ import { AuthorizationStatus, NameSpace } from '../../constants/constants';
 
 const mockStore = configureMockStore();
 
-describe('Component: NotFound', () => {
+describe('Component: Login', () => {
   it('should render correctly', async () => {
     const history = createMemoryHistory();
     history.push(AppRoute.Login);

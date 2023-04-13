@@ -1,15 +1,15 @@
-import { createMemoryHistory } from "history";
-import NotFound from "./not-found";
-import {render, screen} from '@testing-library/react';
-import HistoryRouter from "../../components/history-router";
+import { createMemoryHistory } from 'history';
+import NotFound from './not-found';
+import { render, screen } from '@testing-library/react';
+import HistoryRouter from '../../components/history-router';
 
 describe('Component: NotFound', () => {
   const history = createMemoryHistory();
 
   it('should render correctly', () => {
     render(
-      <HistoryRouter history={ history }>
-      <NotFound/>
+      <HistoryRouter history={history}>
+        <NotFound />
       </HistoryRouter>
     );
 

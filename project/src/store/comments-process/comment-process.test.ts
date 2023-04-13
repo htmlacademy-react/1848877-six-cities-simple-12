@@ -1,7 +1,6 @@
-import { makeFakeReviews } from "../../utils/mocks";
-import { fetchCommentsAction } from "./api-actionts";
-import { commentProcessSlice, setLoadComments, setNextReview } from "./comment-process";
-import { CommentProcess } from "./types";
+import { makeFakeReviews } from '../../utils/mocks';
+import { commentProcessSlice, setLoadComments, setNextReview } from './comment-process';
+import { CommentProcess } from './types';
 
 describe('reducer: offerPropertyData', () => {
   let state: CommentProcess;
@@ -20,20 +19,16 @@ describe('reducer: offerPropertyData', () => {
     );
   });
 
-  it('should loaded reviews if action fulfilled', () => {
+  it('loadComments', () => {
     const commentReducer = commentProcessSlice.reducer(state, {
       type: setLoadComments,
       payload: fakeReviews
-    })
+    });
     expect(commentReducer).toEqual({ loadComments: fakeReviews, nextReview: null });
   });
 
-  it('should loaded reviews if action fulfilled', () => {
-    const comment = 'testtest'
-    const commentReducer = commentProcessSlice.reducer(state, {
-      type: setNextReview,
-      payload: fakeReviews[0]
-    })
+  it('nextReview', () => {
+    const commentReducer = commentProcessSlice.reducer(state, { type: setNextReview, payload: fakeReviews[0] });
     expect(commentReducer).toEqual({ loadComments: [], nextReview: fakeReviews[0] });
   });
 });
