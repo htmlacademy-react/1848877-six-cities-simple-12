@@ -4,6 +4,7 @@ import { AxiosInstance } from 'axios';
 import { APIRoute } from '../../services/constants';
 import { Offers } from '../../types/offers';
 import { setNearOffers } from './near-offers-process';
+import { toast } from 'react-toastify';
 
 export const fetchNearOffersAction = createAsyncThunk<void, number, {
   dispatch: AppDispatch;
@@ -12,7 +13,12 @@ export const fetchNearOffersAction = createAsyncThunk<void, number, {
 }>(
   'data/fetchNearOffers',
   async (offerId, { dispatch, extra: api }) => {
-    const { data } = await api.get<Offers[]>(`${APIRoute.Offers}/${offerId}/nearby`);
-    dispatch(setNearOffers(data));
+    try {
+      const { data } = await api.get<Offers[]>(`${APIRoute.Offers}/${offerId}/nearby`);
+      dispatch(setNearOffers(data));
+    } catch (e) {
+      toast.error('Unfortunately, we can\'t show nearby offers');
+      throw e;
+    }
   },
 );

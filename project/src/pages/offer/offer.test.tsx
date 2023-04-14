@@ -1,6 +1,6 @@
 import { createMemoryHistory } from 'history';
 import { render, screen } from '@testing-library/react';
-import {OfferComponent} from './offer';
+import { OfferComponent } from './offer';
 import { AppRoute } from '../../router/RoutePath';
 import { AuthorizationStatus } from '../../constants/constants';
 import { makeFakeOffer } from '../../utils/mocks';
@@ -17,6 +17,8 @@ describe('Component: Offer', () => {
         comments={[]}
         nearOtherOffers={[]}
         offerId={1}
+        offersNearbyLoading={false}
+        reviewLoaing={false}
       />
     );
 
