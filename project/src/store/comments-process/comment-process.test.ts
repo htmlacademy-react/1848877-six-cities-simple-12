@@ -12,6 +12,7 @@ describe('reducer: offerPropertyData', () => {
       loadComments: [],
       nextReview: null,
       sendCommentStatus: Status.Idle,
+      reviewsLoading: false,
     };
   });
 
@@ -26,12 +27,12 @@ describe('reducer: offerPropertyData', () => {
       type: setLoadComments,
       payload: fakeReviews
     });
-    expect(commentReducer).toEqual({ loadComments: fakeReviews, nextReview: null, sendCommentStatus: 'idle' });
+    expect(commentReducer).toEqual({ loadComments: fakeReviews, nextReview: null, sendCommentStatus: 'idle', reviewsLoading: false, });
   });
 
   it('nextReview', () => {
     const commentReducer = commentProcessSlice.reducer(state, { type: setNextReview, payload: fakeReviews[0] });
-    expect(commentReducer).toEqual({ loadComments: [], nextReview: fakeReviews[0], sendCommentStatus: 'idle' });
+    expect(commentReducer).toEqual({ loadComments: [], nextReview: fakeReviews[0], sendCommentStatus: 'idle', reviewsLoading: false });
   });
 });
 

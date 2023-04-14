@@ -20,8 +20,10 @@ import { fetchNearOffersAction } from '../../store/near-offers-process/api-actio
 import { fetchOfferByIdAction } from '../../store/offer-process/api-actions';
 import LoadingScreen from '../../components/loading-screen';
 import { Comment } from '../../types/comments';
+import { getOffersNearbyLoading } from '../../store/near-offers-process/selectors';
+import { getReviewsLoading } from '../../store/comments-process/selectors';
 
-const Gallery = ({room}: {room: Offers}) => (
+const Gallery = ({ room }: { room: Offers }) => (
   <div className="property__gallery-container container">
     <div className="property__gallery">
       {room.images.map((img) => (<ImagesOfOffers key={img} img={img} />))}
@@ -29,7 +31,7 @@ const Gallery = ({room}: {room: Offers}) => (
   </div>
 );
 
-const NearestOffers = ({offers}: {offers: Offers[]}) => (
+const NearestOffers = ({ offers }: { offers: Offers[] }) => (
   <div className="container">
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>
@@ -43,11 +45,12 @@ const NearestOffers = ({offers}: {offers: Offers[]}) => (
   </div>
 );
 
-const RoomInfo = ({room, comments, authorizationStatus, offerId}: {
+const RoomInfo = ({ room, comments, authorizationStatus, offerId, reviewLoaing }: {
   room: Offers;
   authorizationStatus: AuthorizationStatus;
   comments: Comment[];
   offerId: number;
+  reviewLoaing: boolean;
 }) => (
   <div className="property__container container">
     <div className="property__wrapper">
@@ -103,8 +106,8 @@ const RoomInfo = ({room, comments, authorizationStatus, offerId}: {
         </div>
       </div>
       <section className="property__reviews reviews">
-        <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
-        <ReviewList comments={comments} />
+        {reviewLoaing ? <LoadingScreen /> : <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>}
+        {reviewLoaing ? <LoadingScreen /> : <ReviewList comments={comments} />}
         {authorizationStatus === AuthorizationStatus.Auth ? <ReviewForm offerId={offerId} /> : null}
       </section>
     </div>
@@ -117,12 +120,16 @@ export const OfferComponent = ({
   comments,
   nearOtherOffers,
   offerId,
+  offersNearbyLoading,
+  reviewLoaing,
 }: {
   room: Offers;
   authorizationStatus: AuthorizationStatus;
   comments: Comment[];
   nearOtherOffers: Offers[];
   offerId: number;
+  offersNearbyLoading: boolean;
+  reviewLoaing: boolean;
 }) => (
   <main className="page__main page__main--property" >
     <section className="property">
@@ -132,6 +139,7 @@ export const OfferComponent = ({
         comments={comments}
         authorizationStatus={authorizationStatus}
         offerId={offerId}
+        reviewLoaing={reviewLoaing}
       />
       <Map
         className="property__map"
@@ -140,7 +148,7 @@ export const OfferComponent = ({
         selectedOfferId={room.id}
       />
     </section>
-    <NearestOffers offers={nearOtherOffers} />
+    {offersNearbyLoading ? <LoadingScreen /> : <NearestOffers offers={nearOtherOffers} />}
   </main >
 );
 
@@ -155,6 +163,8 @@ const Offer = () => {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const comments = useAppSelector((state) => state.COMMENT.loadComments);
   const nearOffers = useAppSelector((state) => state.NEAR_OFFERS.nearOffers);
+  const offersNearbyLoading = useAppSelector(getOffersNearbyLoading);
+  const reviewLoaing = useAppSelector(getReviewsLoading);
 
   useEffect(() => {
     setRoom(offers.find((offer) => offer.id === offerId));
@@ -183,6 +193,8 @@ const Offer = () => {
       comments={comments}
       nearOtherOffers={nearOtherOffers}
       offerId={offerId}
+      offersNearbyLoading={offersNearbyLoading}
+      reviewLoaing={reviewLoaing}
     />
   );
 };

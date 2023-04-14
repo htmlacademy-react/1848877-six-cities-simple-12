@@ -7,6 +7,7 @@ import { Offers } from '../../types/offers';
 import { OfferId } from '../../types/review';
 import { TIMEOUT_SHOW_ERROR } from '../../services/constants';
 import { store } from '..';
+import { toast } from 'react-toastify';
 
 export const clearErrorAction = createAsyncThunk(
   'data/clearError',
@@ -25,10 +26,15 @@ export const fetchOfferAction = createAsyncThunk<void, undefined, {
 }>(
   'data/fetchOffers',
   async (_arg, { dispatch, extra: api }) => {
-    dispatch(setIsOffersDataLoading(true));
-    const { data } = await api.get<Offers[]>(APIRoute.Offers);
-    dispatch(setIsOffersDataLoading(false));
-    dispatch(loadOffers(data));
+    try {
+      dispatch(setIsOffersDataLoading(true));
+      const { data } = await api.get<Offers[]>(APIRoute.Offers);
+      dispatch(setIsOffersDataLoading(false));
+      dispatch(loadOffers(data));
+    } catch (e) {
+      toast.error('Unfortunately, we can\'t show offers');
+      throw e;
+    }
   },
 );
 
@@ -39,7 +45,12 @@ export const fetchOfferByIdAction = createAsyncThunk<void, OfferId, {
 }>(
   'data/fetchOfferById',
   async ({ id }, { dispatch, extra: api }) => {
-    const { data } = await api.get<Offers>(`${APIRoute.Offers}/${id}`);
-    dispatch(loadOfferById(data));
+    try {
+      const { data } = await api.get<Offers>(`${APIRoute.Offers}/${id}`);
+      dispatch(loadOfferById(data));
+    } catch (e) {
+      toast.error('Unfortunately, we can\'t show room page');
+      throw e;
+    }
   },
 );

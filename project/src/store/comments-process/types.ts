@@ -6,4 +6,5 @@ export type CommentProcess = {
   loadComments: Comment[];
   nextReview: Review | null;
   sendCommentStatus: Status;
+  reviewsLoading: boolean;
 }

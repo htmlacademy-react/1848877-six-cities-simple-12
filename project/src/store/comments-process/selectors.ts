@@ -9,3 +9,5 @@ export const selectCommentsStatus = createSelector([selectStatus], (status) => (
   isError: status === Status.Error,
   isSuccess: status === Status.Success,
 }));
+
+export const getReviewsLoading = (state: State): boolean => state[NameSpace.Comment].reviewsLoading;
