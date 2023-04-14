@@ -4,10 +4,10 @@ import { getToken } from './token';
 import { processErrorHandle } from './process-error-handle';
 import { StatusCodes } from 'http-status-codes';
 
-const StatusCodeMapping: Record<number, boolean> = {
+const StatusCodeMapping: { [key: number]: boolean } = {
   [StatusCodes.BAD_REQUEST]: true,
   [StatusCodes.UNAUTHORIZED]: true,
-  [StatusCodes.NOT_FOUND]: true
+  [StatusCodes.NOT_FOUND]: true,
 };
 
 const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[response.status];

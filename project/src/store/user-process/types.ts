@@ -1,5 +1,4 @@
 import { AuthorizationStatus } from '../../constants/constants';
-import { AppRoute } from '../../router/RoutePath';
 
 export type UserData = {
   id: number;
@@ -13,5 +12,4 @@ export type UserData = {
 export type UserProcess = {
   authorizationStatus: AuthorizationStatus;
   userData: UserData;
-  redirectToRoute: AppRoute | null;
 };

@@ -19,3 +19,10 @@ export enum NameSpace {
   Comment = 'COMMENT',
   NearOffers = 'NEAR_OFFERS'
 }
+
+export enum Status {
+  Idle = 'idle',
+  Loading = 'loading',
+  Success = 'success',
+  Error = 'error',
+}
