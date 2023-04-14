@@ -1,10 +1,11 @@
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { ReviewComment } from '../../types/review';
 import Rating from '../rating';
 import { REVIEW_STARS, REVIEW_LENGTH } from './constants';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import './review-form.css';
 import { sendCommentAction } from '../../store/comments-process/api-actionts';
+import { selectCommentsStatus } from '../../store/comments-process/selectors';
 
 type ReviewFormProps = {
   offerId: number;
@@ -13,28 +14,32 @@ type ReviewFormProps = {
 const ReviewForm = ({ offerId }: ReviewFormProps) => {
   const dispatch = useAppDispatch();
 
+  const status = useAppSelector(selectCommentsStatus);
+
   const [data, setData] = useState<{ rating: string; review: string }>({
     rating: '',
     review: '',
   });
 
   const [isSubmitDisabled, setSubmitDisabled] = useState(false);
-  const [isFormDisabled, setFormDisabled] = useState(false);
 
   useEffect(() => {
     const isDisable = !!(data.review.length > REVIEW_LENGTH.Max || data.review.length < REVIEW_LENGTH.Min || !data.rating);
     setSubmitDisabled(isDisable);
   }, [data.rating, data.review]);
+  useEffect(() => {
+    if (status.isSuccess) {
+      clearForm();
+    }
+  }, [status]);
+
 
   const changeDataHandle = (evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setData({ ...data, [evt.target.name]: evt.target.value });
   };
 
   const onSubmit = (reviewData: ReviewComment) => {
-    setFormDisabled(true);
     dispatch(sendCommentAction(reviewData));
-    clearForm();
-    setFormDisabled(false);
   };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
@@ -63,7 +68,7 @@ const ReviewForm = ({ offerId }: ReviewFormProps) => {
 
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
-      <fieldset disabled={isFormDisabled} className="fieldset">
+      <fieldset disabled={status.isLoading} className="fieldset">
         <label className="reviews__label form__label" htmlFor="review">Your review</label>
         <div className="reviews__rating-form form__rating">
           {REVIEW_STARS.map((star) => (

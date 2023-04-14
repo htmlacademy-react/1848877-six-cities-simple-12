@@ -1,3 +1,4 @@
+import { Status } from '../../constants/constants';
 import { makeFakeReviews } from '../../utils/mocks';
 import { commentProcessSlice, setLoadComments, setNextReview } from './comment-process';
 import { CommentProcess } from './types';
@@ -10,6 +11,7 @@ describe('reducer: offerPropertyData', () => {
     state = {
       loadComments: [],
       nextReview: null,
+      sendCommentStatus: Status.Idle,
     };
   });
 
