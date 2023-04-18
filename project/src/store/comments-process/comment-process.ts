@@ -1,9 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { NameSpace, Status } from '../../constants/constants';
 import { CommentProcess, } from './types';
 import { Comment } from '../../types/comments';
 import { Review } from '../../types/review';
 import { fetchCommentsAction, sendCommentAction } from './api-actionts';
+import { NameSpace, Status } from '../../constants/enum';
 
 const initialState: CommentProcess = {
   loadComments: [],

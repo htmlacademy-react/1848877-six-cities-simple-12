@@ -1,4 +1,4 @@
-import { SortingTypes } from '../../constants/constants';
+import { SortingTypes } from '../../constants/enum';
 import { Offers } from '../../types/offers';
 
 export type OfferProcess = {

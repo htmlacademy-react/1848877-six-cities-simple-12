@@ -1,4 +1,4 @@
-import { Status } from '../../constants/constants';
+import { Status } from '../../constants/enum';
 import { makeFakeReviews } from '../../utils/mocks';
 import { commentProcessSlice, setLoadComments, setNextReview } from './comment-process';
 import { CommentProcess } from './types';

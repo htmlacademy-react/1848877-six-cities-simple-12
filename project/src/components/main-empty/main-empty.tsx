@@ -1,10 +1,8 @@
-import React from 'react';
-
 type MainEmptyProps = {
   city: string;
 };
 
-const MainEmpty: React.FC<MainEmptyProps> = ({ city }) => (
+const MainEmpty = ({ city }: MainEmptyProps) => (
   <div className="cities">
     <div className="cities__places-container cities__places-container--empty container">
       <section className="cities__no-places">

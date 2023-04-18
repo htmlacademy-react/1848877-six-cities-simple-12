@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../../types/state';
 import { AxiosInstance } from 'axios';
-import { APIRoute } from '../../services/constants';
+import { APIRoute } from '../../services/enum';
 import { loadOfferById, loadOffers, setError, setIsOffersDataLoading } from './offer-process';
 import { Offers } from '../../types/offers';
 import { OfferId } from '../../types/review';

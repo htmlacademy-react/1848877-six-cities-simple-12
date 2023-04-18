@@ -1,4 +1,4 @@
-import { AuthorizationStatus, NameSpace } from '../../constants/constants';
+import { AuthorizationStatus, NameSpace } from '../../constants/enum';
 import { State } from '../../types/state';
 
 export const getAuthorizationStatus = (state: State): AuthorizationStatus => state[NameSpace.User].authorizationStatus;

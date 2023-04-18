@@ -2,7 +2,7 @@ import { CityLocation, Offers } from '../../types/offers';
 import CardList from '../card-list';
 import SortPlaces from '../sort-places';
 import Map from '../map';
-import { SortingTypes } from '../../constants/constants';
+import { SortingTypes } from '../../constants/enum';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { offerIdChange } from '../../store/offer-process/offer-process';
 
@@ -17,11 +17,11 @@ const MainPageContent = ({ placesCount, currentCity, offers, currentSortName }: 
   const dispatch = useAppDispatch();
   const offersId = useAppSelector((state) => state.OFFER.id);
 
-  const onListItemHover = (id: number) => {
+  const handleOnListItemHover = (id: number) => {
     dispatch(offerIdChange(id));
   };
 
-  const onMouseLeave = () => {
+  const handleOnMouseLeave = () => {
     dispatch(offerIdChange(null));
   };
 
@@ -36,8 +36,8 @@ const MainPageContent = ({ placesCount, currentCity, offers, currentSortName }: 
             <CardList
               offers={offers}
               cardType={'home'}
-              onListItemHover={onListItemHover}
-              onMouseLeave={onMouseLeave}
+              onListItemHover={handleOnListItemHover}
+              onMouseLeave={handleOnMouseLeave}
             />
           </div>
         </section>

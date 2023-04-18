@@ -1,4 +1,4 @@
-import { Status } from '../../constants/constants';
+import { Status } from '../../constants/enum';
 import { Comment } from '../../types/comments';
 import { Review } from '../../types/review';
 
