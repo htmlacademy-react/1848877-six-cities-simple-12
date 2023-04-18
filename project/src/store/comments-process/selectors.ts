@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { NameSpace, Status } from '../../constants/constants';
 import { State } from '../../types/state';
+import { NameSpace, Status } from '../../constants/enum';
 
 export const selectStatus = (state: State) => state[NameSpace.Comment].sendCommentStatus;
 

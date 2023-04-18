@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { NameSpace } from '../../constants/constants';
+import { NameSpace } from '../../constants/enum';
 import { Offers } from '../../types/offers';
 import { NearOffersProcess } from './types';
 import { fetchNearOffersAction } from './api-actions';
